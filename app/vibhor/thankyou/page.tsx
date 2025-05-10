@@ -31,18 +31,20 @@ const ConfirmationPage = () => {
 
     return (
         <>
-        <Script
-        strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=AW-16491466128"
-      />
-      <Script id="google-ads" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-16491466128');
-        `}
-      </Script>
+            <Script
+                strategy="afterInteractive"
+                src="https://www.googletagmanager.com/gtag/js?id=AW-17066906976"
+            />
+            <Script id="google-ads" strategy="afterInteractive">
+                {`
+             window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17066906976');
+
+            `}
+            </Script>
             <div className="min-h-screen bg-gradient-to-br from-teal-400 to-teal-300 flex flex-col justify-between items-center px-4 py-10">
                 <div>
                     <h1 className="text-4xl sm:text-5xl font-bold text-white text-center mb-4">
