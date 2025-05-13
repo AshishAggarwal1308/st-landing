@@ -24,26 +24,52 @@ import {
 import { formatDate_, timestamp } from '@/lib/masterclass_functions/formatDate';
 import Script from 'next/script';
 
+
 const topics = [
     {
-        bold: '',
-        description: 'Trade smarter and get rid of emotional trading',
+        bold: 'Master Forex Basics:',
+        description: 'Understand currency pairs, pips, and how the Forex market works',
+    },
+    {
+        bold: 'Trade with Confidence:',
+        description: 'Learn how to analyze market trends and make smart trading decisions',
+    },
+    {
+        bold: 'Minimize Risks, Maximize Profits:',
+        description: 'Get strategies for managing risk and protecting your investments',
+    },
+    {
+        bold: 'Trade Management:',
+        description:
+            'Learn the fundamentals of entering, exiting, holding, stop loss, and setting targets to build a profitable trading strategy.',
+    },
+    {
+        bold: 'Trade Efficiently:',
+        description: 'Discover how to trade in just 15 minutes a day without complex indicators.',
+    },
+    {
+        bold: 'Stay Ahead of the Game:',
+        description: 'Learn how to keep up with global financial news and market changes.',
     },
     {
         bold: '',
-        description: 'Let algorithms work for you 24/7 while you enjoy your quality family time.',
+        description: 'Which currency pair to trade?',
     },
     {
         bold: '',
-        description: 'Catch more profitable stocks and choose precise entry/exit points with 10x accuracy.',
+        description: 'What time zone to select while trading?',
     },
     {
         bold: '',
-        description: 'Boost your profits with smart optimization techniques.',
+        description: 'How to get free access to prop firms/funded accounts',
     },
     {
         bold: '',
-        description: 'Achieve consistent high returns without worrying about losses.',
+        description: 'Bank zone strategy',
+    },
+    {
+        bold: '',
+        description: 'News-based trading',
     },
 ];
 
@@ -51,8 +77,7 @@ const painPoints = [
     {
         icon: <PiPencilSimpleLineBold className="text-blue-500" size={30} />,
         title: 'Feeling Stuck In The 9–To–5 Grind?',
-        description:
-            "Do you lack time for trading due to the Indian Stock Market's Timing (9:15 AM to 3:30 PM)?",
+        description: "Do you lack time for trading due to the Indian Stock Market's Timing (9:15 AM to 3:30 PM)?",
     },
     {
         icon: <PiArrowCircleDownBold className="text-blue-500" size={30} />,
@@ -72,40 +97,31 @@ const painPoints = [
     {
         icon: <PiBracketsSquareBold className="text-blue-500" size={30} />,
         title: 'Overwhelmed By Market News?',
-        description:
-            'Unsure how to filter and use financial news to your advantage?',
+        description: 'Unsure how to filter and use financial news to your advantage?',
     },
 ];
 const benefits = [
     {
         icon: <PiClipboardTextBold className="text-blue-500" size={28} />,
-        description:
-            'Get a solid foundation in stock market essentials and build confidence in trading',
+        title: 'Control Your Emotions:',
+        description: 'Develop A Trading Psychology That Helps You Maintain Control, Stick To Your Plan, And Achieve A Flow State While Trading',
     },
     {
         icon: <PiBookBookmarkBold className="text-blue-500" size={28} />,
-        description:
-            'Catch the perfect entry/exit points like a professional trader.',
+        title: 'Gain Confidence In Your Trading',
+        description: 'Learn The Strategies That Professional Traders Use So You Can Make Informed Decisions And Trade With Confidence',
     },
     {
         icon: <PiTargetBold className="text-blue-500" size={28} />,
+        title: 'Strategic Mastery:',
         description:
-            'Trade in multiple option strikes by spending less than 10 minutes of your time.',
+            'Learn Winning Strategies That Guide Your Entry, Exit, And Trade Management For Consistent Success And Maximum Returns',
     },
     {
         icon: <PiMonitorPlayBold className="text-blue-500" size={28} />,
+        title: 'Imagine Earning Money Anytime, Anywhere:',
         description:
-            'Live Algo Deployment: Watch as we set up a real algo trading system',
-    },
-    {
-        icon: <PiTargetBold className="text-blue-500" size={28} />,
-        description:
-            'Learn how to set up and automate your trading strategies in less than 10 minutes without any coding knowledge.',
-    },
-    {
-        icon: <PiMonitorPlayBold className="text-blue-500" size={28} />,
-        description:
-            'Automate your Options Strategies with 10x accuracy to ensure maximum profitability.',
+            'With Forex, The Market Is Open 24 Hours A Day, Allowing You To Trade Whenever It Fits Your Schedule.',
     },
 ];
 
@@ -132,8 +148,6 @@ const faqs = [
     }
 ];
 
-
-
 function Page() {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [UserName, setUserName] = useState("");
@@ -146,13 +160,10 @@ function Page() {
     const [formErrors, setFormErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const isValidPhone = (phone: string) => /^[0-9]{10}$/.test(phone);
-
-    const toggle = (index: number) => {
-        setActiveIndex(activeIndex === index ? null : index)
-    };
+    const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
 
     React.useEffect(() => {
-        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=vibhor";
+        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=ayushi";
 
         fetch(apiUrl)
             .then(response => response.json()).then(data => {
@@ -187,6 +198,7 @@ function Page() {
         let isValid = true;
         const errors: typeof formErrors = {};
 
+
         if (!formData.name) {
             errors.name = "Name is required.";
             isValid = false;
@@ -210,7 +222,7 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.co/vibhor/thankyou";
+        const redirectUrl = "https://stocktutor.com/masterclass/ayushi/thankyou";
 
         const data = {
             submittedAt: timestamp(),
@@ -228,9 +240,8 @@ function Page() {
             landingPageUrl: window.location.href,
         };
 
-
         try {
-            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzMzA0MzM1MjY5NTUzMjUxM2Ii_pc`, {
+            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzMzA0M2Q1MjZjNTUzZDUxMzMi_pc`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
@@ -243,6 +254,7 @@ function Page() {
         } finally {
             setIsSubmitting(false);
         }
+
     };
 
 
@@ -258,7 +270,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '10041111282577074');
+fbq('init', '1834827303964862');
 fbq('track', 'PageView');
 
         `}
@@ -268,43 +280,43 @@ fbq('track', 'PageView');
                     height="1"
                     width="1"
                     style={{ display: 'none' }}
-                    src="https://www.facebook.com/tr?id=540426378341652&ev=PageView&noscript=1"
+                    src="https://www.facebook.com/tr?id=1834827303964862&ev=PageView&noscript=1"
 
                 />
             </noscript>
 
+
             <main>
                 <div className="w-full">
                     <div className="bg-yellow-500 py-4">
-                        <p className="text-center text-xl md:text-2xl">Join the 2-hour <span className='font-bold'>“No Code Algo Trading”</span> Masterclass</p>
+                        <p className="text-center text-xl md:text-2xl">Join Our Forex Trading Masterclass & Learn…..</p>
                     </div>
 
                     <div className="bg-white py-4 md:py-12 px-4 sm:px-6 lg:px-12 flex flex-col items-center space-y-2 md:space-y-10">
                         <p className="text-2xl sm:text-3xl md:text-5xl text-center font-bold leading-7 md:leading-snug max-w-6xl">
-                            Learn {' '}
-                            <span className="text-blue-500">Algo Trading</span> to build systems that{' '}
-                            <span className="text-blue-500">trade with your brain</span> — not your emotions.
-                            {/* <span className="text-blue-500"> Less Than 10 Minutes</span> On Screen With <span className="text-blue-500">Algo-Trading.</span> */}
+                            Forex trading isn&apos;t luck.{' '}
+                            <span className="text-blue-500">It&apos;s learned.</span> Build your trading mindset with an{' '}
+                            <span className="text-blue-500">expert-led session.</span>
                         </p>
 
                         <p className="text-base sm:text-lg text-center font-semibold max-w-xl leading-snug">
-                            NO NEED TO WRITE A SINGLE LINE OF CODE
+                            Master the Selection of Currency Pairs Minimize Risks & Maximize Your Profits
                         </p>
 
                         <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-20 w-full py-4 md:py-12 bg-cover bg-no-repeat bg-center bg-opacity-10 bg-[url('https://img.freepik.com/free-vector/abstract-background-with-monochrome-low-poly-design_1048-14453.jpg?t=st=1744112073~exp=1744115673~hmac=7998e425d4dcf5321bb513a0a2e987b8505e748ea5cfce72c5d8b78bbd2f03f5&w=1060')]">
                             {/* Left: Ayushi Info */}
                             <div className="flex flex-col items-center">
                                 <Image
-                                    src="/vibhor.webp"
-                                    alt="Vibhor Jain"
+                                    src="/ayushi.webp"
+                                    alt="Ayushi Maam"
                                     height={300}
                                     width={300}
-                                    className="h-[250px] w-[250px] md:h-[300px] md:w-[300px] rounded-full object-contain"
+                                    className="h-[250px] w-[250px] md:h-[300px] md:w-[300px] rounded-full object-cover"
                                 />
                                 <div className="flex flex-col w-full items-center p-4 shadow-2xl rounded-2xl mt-4">
-                                    <span className="text-xl md:text-2xl font-bold text-blue-500">Vibhor Jain</span>
-                                    <span className="text-sm md:text-base text-center font-semibold">NISM Certified professional and algo trading coach</span>
-                                    <span className="text-sm">6+ Years of Experience</span>
+                                    <span className="text-xl md:text-2xl font-bold text-blue-500">Ayushi Verma</span>
+                                    <span className="text-sm md:text-base font-semibold">Forex trading coach</span>
+                                    <span className="text-sm">15+ Years of Experience</span>
                                 </div>
                             </div>
 
@@ -364,6 +376,7 @@ fbq('track', 'PageView');
                                         </div>
                                         {formErrors.phone && <p className="text-red-500">{formErrors.phone}</p>}
                                     </div>
+
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
@@ -405,7 +418,6 @@ fbq('track', 'PageView');
                                         <p className="font-bold text-[#1c274c] text-lg">Hindi + English</p>
                                     </div>
                                 </div>
-
                                 {/* Duration Box */}
                                 <div className="flex items-center gap-3 bg-white shadow-md rounded-xl px-6 py-4 min-w-[260px]">
                                     <LuHourglass className="text-[#1c274c]" size={28} />
@@ -418,7 +430,7 @@ fbq('track', 'PageView');
                         </div>
                         <section className="w-full px-4 py-12 bg-white flex flex-col items-center text-center">
                             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold max-w-4xl mb-10">
-                                Do You Want To…
+                                Here's What You'll Learn in This Power-Packed Masterclass:
                             </h2>
 
                             <div className="max-w-3xl w-full text-left space-y-5">
@@ -436,7 +448,6 @@ fbq('track', 'PageView');
                                     </div>
                                 ))}
                             </div>
-                            <p className='text-md md:text-2xl pt-8'>If you Nod Yes, then you are invited to join the LIVE <span className='font-bold'>“No Code Algo Trading”</span> Masterclass.</p>
                             <Link href="#form">
                                 <button className="mt-10 bg-yellow-400 hover:bg-yellow-500 text-black  py-3 px-6 rounded-full transition-all text-lg sm:text-xl">
                                     BECOME A FOREX TRADING PRO!
@@ -447,7 +458,7 @@ fbq('track', 'PageView');
                         <section className="py-6 px-4 md:px-8 lg:px-20">
                             {/* Title */}
                             <h2 className="text-center text-2xl md:text-3xl font-bold mb-4">
-                                Are You A Working Professional, Businessman, Student, or a Homemaker and…
+                                Do These Sound Familiar?
                             </h2>
                             <div className="w-12 h-1 mx-auto bg-green-500 rounded-full mb-10"></div>
 
@@ -468,27 +479,31 @@ fbq('track', 'PageView');
                             </div>
                         </section>
                         <section className="py-12 px-4 md:px-8 lg:px-20 bg-white text-center">
+                            {/* Title */}
                             <h2 className="text-2xl md:text-3xl font-bold mb-10">
-                                Here&apos;s What You Will Learn in the Masterclass
+                                Why This Masterclass is a Game-Changer:
                             </h2>
 
+                            {/* Benefits List */}
                             <div className="space-y-6 max-w-4xl mx-auto text-left">
                                 {benefits.map((item, idx) => (
                                     <div key={idx} className="flex items-start gap-4">
                                         <div className="mt-1">{item.icon}</div>
                                         <div>
+                                            <p className="font-semibold">{item.title}</p>
                                             <p className="text-sm text-gray-700">{item.description}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
 
-
+                            {/* Note */}
                             <p className="mt-10 text-gray-800 font-medium max-w-2xl mx-auto text-sm md:text-base">
-                                Don&apos;t Miss This Chance To Elevate Your FOREX Trading Skills. Spaces Are Limited,
-                                And They&apos;re Filling Up Fast!
+                                Don't Miss This Chance To Elevate Your FOREX Trading Skills. Spaces Are Limited,
+                                And They're Filling Up Fast!
                             </p>
 
+                            {/* CTA Button */}
                             <Link href="#form">
                                 <button className="mt-10 bg-yellow-400 hover:bg-yellow-500 text-black  py-3 px-6 rounded-full transition-all text-lg sm:text-xl">
                                     Register for Masterclass Now!
@@ -502,8 +517,8 @@ fbq('track', 'PageView');
                             <div className="flex flex-col items-center">
                                 <div className="relative w-[280px] h-[360px] md:w-[300px] md:h-[400px]">
                                     <Image
-                                        src="/vibhor.webp" // replace with actual path
-                                        alt="Vibhor Jain"
+                                        src="/ayushi-mam.webp"
+                                        alt="Ayushi Verma"
                                         fill
                                         className="object-contain"
                                     />
@@ -511,31 +526,42 @@ fbq('track', 'PageView');
 
                                 {/* Name Badge */}
                                 <div className="mt-4 bg-white text-center py-3 px-6 rounded-xl shadow-md">
-                                    <p className="text-[#1D4ED8] font-bold text-lg">Vibhor Jain</p>
-                                    <p className="text-gray-700 text-sm">NISM Certified professional and algo trading coach </p>
+                                    <p className="text-[#1D4ED8] font-bold text-lg">AYUSHI VERMA</p>
+                                    <p className="text-gray-700 text-sm">FOREX TADING COACH</p>
                                 </div>
                             </div>
 
                             {/* Text Content */}
                             <div className="flex-1">
                                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center lg:text-left">
-                                    Know Your Algo-Trading Mentor
+                                    Know Your Mentor
                                 </h2>
 
                                 <div className="space-y-6 text-sm md:text-base">
                                     <div>
-                                        <h3 className="font-semibold text-lg mb-2">Meet Vibhor Jain</h3>
+                                        <h3 className="font-semibold text-lg mb-2">Meet Ayushi Verma</h3>
                                         <p>
-                                            Vibhor Jain, with an MBA in Finance and over 6 years of industry experience, is the founder of Algofy. He has trained more than 2,000 students, empowering them with the skills needed to succeed in the financial markets.
-
-                                            What Vibhor Does Best?
-
-                                            Makes algorithmic trading easy to understand
-                                            Teaches how to use profitable trading algorithms
-                                            Guides on improving trading strategies with data-driven insights
-
-                                            Vibhor Jain uses his expertise to simplify algorithmic trading, helping people learn how to optimize their own trading strategies. His clear and practical approach ensures that even beginners can get started with confidence.
+                                            Ayushi Verma is a seasoned financial expert with over 15 years of experience in
+                                            the capital markets. As an NSE Empanelled Trainer, she's helped shape the careers
+                                            of over 5000 traders, sharing her wealth of knowledge and practical insights.
                                         </p>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="font-semibold text-lg mb-2">What Aayushi Does Best?</h3>
+                                        <ul className="list-disc ml-6 space-y-1">
+                                            <li>Simplifies Pure Price Action Trading Techniques</li>
+                                            <li>Teaches How To Trade Confidently Without Relying On Indicators</li>
+                                            <li>Guides On Managing Substantial Capital In Forex Trading</li>
+                                            <li>
+                                                Ayuushi’s Deep Understanding Of Price Action Trading Allows Her To Break Down
+                                                Complex Concepts Into Simple, Actionable Steps.
+                                            </li>
+                                            <li>
+                                                Her Practical Approach Ensures That Traders, Whether Beginners Or Advanced, Can
+                                                Navigate The Markets With Confidence And Precision.
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -590,14 +616,12 @@ fbq('track', 'PageView');
                                 direction and strategies that worked well for us and our students and that we believe can move you forward.
                                 <br /><br />
                                 All of our terms, privacy policies, and disclaimers for this program and website can be accessed via the link above.
-                                We feel transparency is important and we hold ourselves (and you) to a high standard of integrity.
+                                We feel transparency is important and we hold ourselves and you to a high standard of integrity.
                                 <br /><br />
                                 Thanks for stopping by. We hope this training and content brings you a lot of value.
                             </p>
                         </div>
                     </div>
-
-
 
                     <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 shadow-md px-4 py-4">
                         <div className="flex flex-col md:flex-row items-center justify-center gap-4 max-w-6xl mx-auto">
@@ -614,8 +638,8 @@ fbq('track', 'PageView');
                     </div>
 
                 </div>
-
             </main>
+
 
         </>
 

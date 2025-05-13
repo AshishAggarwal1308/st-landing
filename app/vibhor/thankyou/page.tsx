@@ -31,7 +31,7 @@ const ConfirmationPage = () => {
 
     return (
         <>
-            <Script
+            {/* <Script
                 strategy="afterInteractive"
                 src="https://www.googletagmanager.com/gtag/js?id=AW-17066906976"
             />
@@ -44,7 +44,7 @@ const ConfirmationPage = () => {
   gtag('config', 'AW-17066906976');
 
             `}
-            </Script>
+            </Script> */}
             <div className="min-h-screen bg-gradient-to-br from-teal-400 to-teal-300 flex flex-col justify-between items-center px-4 py-10">
                 <div>
                     <h1 className="text-4xl sm:text-5xl font-bold text-white text-center mb-4">
@@ -54,8 +54,6 @@ const ConfirmationPage = () => {
                         You have <span className="font-semibold">successfully reserved your seat</span> for the Masterclass.
                     </p>
                 </div>
-
-
                 <div className="w-full max-w-3xl bg-white rounded-md shadow-md border-t-4 border-yellow-400">
                     <div className="flex justify-center p-6">
                         <Link href={wAurl}>
