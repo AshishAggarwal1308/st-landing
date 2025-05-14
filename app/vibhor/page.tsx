@@ -230,7 +230,7 @@ function Page() {
 
 
         try {
-            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzNTA0MzU1MjY4NTUzYzUxM2Ii_pc`, {
+            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzMzA0MzM1MjY5NTUzMjUxM2Ii_pc`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
@@ -278,6 +278,7 @@ function Page() {
                 name="description"
                 content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
             ></meta>
+
             <main>
                 <div className="w-full">
                     <div className="bg-yellow-500 py-4">
