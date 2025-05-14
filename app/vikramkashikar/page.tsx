@@ -296,6 +296,12 @@ fbq('track', 'PageView');
                 />
             </noscript>
 
+            <title>Stock Tutor Bootcamp - Vikram Kashikar</title>
+            <meta
+                name="description"
+                content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
+            ></meta>
+
             <main>
                 <div className="w-full">
                     <div className="bg-yellow-500 py-4">
@@ -537,11 +543,11 @@ fbq('track', 'PageView');
                                 ))}
                             </div>
                             <div className="mt-10">
-                            <Link href="#form">
-                                <button className="mt-10 bg-yellow-400 hover:bg-yellow-500 text-black  py-3 px-6 rounded-full transition-all text-lg sm:text-xl">
-                                    Register for Masterclass Now!
-                                </button>
-                            </Link>
+                                <Link href="#form">
+                                    <button className="mt-10 bg-yellow-400 hover:bg-yellow-500 text-black  py-3 px-6 rounded-full transition-all text-lg sm:text-xl">
+                                        Register for Masterclass Now!
+                                    </button>
+                                </Link>
                             </div>
                         </div>
 

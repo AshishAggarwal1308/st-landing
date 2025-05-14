@@ -297,6 +297,11 @@ function Page() {
                     src="https://www.facebook.com/tr?id=1769144873815738&ev=PageView&noscript=1"
                     />
             </noscript>
+            <title>Stock Tutor Bootcamp - Vaibhav Batra</title>
+            <meta
+                name="description"
+                content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
+            ></meta>
 
             <main>
                 <div className="w-full">

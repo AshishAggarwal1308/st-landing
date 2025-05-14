@@ -32,6 +32,7 @@ const ConfirmationPage = () => {
 
   return (
     <>
+
       <Script id="meta-pixel" strategy="afterInteractive">
         {`
           !function(f,b,e,v,n,t,s)
@@ -55,6 +56,12 @@ fbq('track', 'PageView');
           src="https://www.facebook.com/tr?id=1236864701103548&ev=PageView&noscript=1"
         />
       </noscript>
+      <title>Stock Tutor - Thankyou</title>
+      <meta
+        name="description"
+        content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
+      ></meta>
+
       <main>
         <div className="min-h-screen bg-gradient-to-br from-teal-400 to-teal-300 flex flex-col justify-between items-center px-4 py-10">
           <div>

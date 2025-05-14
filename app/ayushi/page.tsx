@@ -284,6 +284,11 @@ fbq('track', 'PageView');
 
                 />
             </noscript>
+            <title>Stock Tutor Bootcamp - Ayushi Verma</title>
+            <meta
+                name="description"
+                content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
+            ></meta>
 
 
             <main>

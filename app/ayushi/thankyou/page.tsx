@@ -56,6 +56,11 @@ fbq('track', 'PageView');
 
         />
       </noscript>
+      <title>Stock Tutor - Thankyou</title>
+      <meta
+        name="description"
+        content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
+      ></meta>
       <main>
         <div className="min-h-screen bg-gradient-to-br from-teal-400 to-teal-300 flex flex-col justify-between items-center px-4 py-10">
           <div>
