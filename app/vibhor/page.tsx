@@ -268,7 +268,7 @@ function Page() {
                     height="1"
                     width="1"
                     style={{ display: 'none' }}
-                    src="https://www.facebook.com/tr?id=540426378341652&ev=PageView&noscript=1"
+                    src="https://www.facebook.com/tr?id=10041111282577074&ev=PageView&noscript=1"
 
                 />
             </noscript>
