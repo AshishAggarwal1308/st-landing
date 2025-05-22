@@ -522,7 +522,7 @@ fbq('track', 'PageView');
                             <div className="flex flex-col items-center">
                                 <div className="relative w-[280px] h-[360px] md:w-[300px] md:h-[400px]">
                                     <Image
-                                        src="/ayushi-mam.webp"
+                                        src="/ayushi.webp"
                                         alt="Ayushi Verma"
                                         fill
                                         className="object-contain"
