@@ -74,7 +74,7 @@ const topics = [
     },
 ];
 
-const painPoints = [
+const whatyoulearn = [
     {
         icon: <PiPencilSimpleLineBold className="text-blue-500" size={30} />,
         title: 'Feeling Stuck In The 9–To–5 Grind?',
@@ -200,7 +200,6 @@ export const noCodeAlgoPoints = [
 ];
 
 
-
 function Page() {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [UserName, setUserName] = useState("");
@@ -276,11 +275,19 @@ fbq('track', 'PageView');
             <main>
                 <div className="w-full">
 
-                    <section className="w-full flex flex-col items-center px-4 py-8 md:py-12 bg-white">
-                        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <section className="w-full flex flex-col items-center px-4 py-2 md:py-12 bg-white">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 md:gap-10 items-start">
                             {/* Left Content */}
-                            <div className="order-2 lg:order-1 space-y-6" >
-                                <h2 className="text-3xl sm:text-4xl font-bold text-black">
+
+                            <div className="order-2 lg:order-1 space-y-2 md:space-y-2" >
+                                <Image
+                                    src="https://stocktutor.com/_next/image?url=https%3A%2F%2Fst-staticimg.s3.ap-south-1.amazonaws.com%2Fassets%2Flogo.png&w=256&q=75"
+                                    alt="Mastering Intraday Trading"
+                                    width={1920}
+                                    height={1080}
+                                    className=" object-cover h-10 w-fit rounded-lg order-1 lg:order-2 "
+                                />
+                                <h2 className="text-2xl md:text-4xl font-bold text-black">
                                     Masterclass on <span className="text-yellow-500">No Code Algo Trading</span>
                                 </h2>
                                 <p className="text-lg text-gray-700">
@@ -289,19 +296,19 @@ fbq('track', 'PageView');
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
                                         <p className="text-sm text-gray-600">Masterclass Date</p>
-                                        <p className="text-lg font-semibold text-black">{wDateTime}</p>
+                                        <p className="text-sm md:text-lg font-semibold text-black">{wDateTime}</p>
                                     </div>
                                     <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
                                         <p className="text-sm text-gray-600">Offer End</p>
-                                        <p className="text-lg font-semibold text-black">{offerEnd}</p>
+                                        <p className="text-sm md:text-lg font-semibold text-black">{offerEnd}</p>
                                     </div>
                                     <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
                                         <p className="text-sm text-gray-600">Language</p>
-                                        <p className="text-lg font-semibold text-black">Hindi</p>
+                                        <p className="text-sm md:text-lg font-semibold text-black">Hindi</p>
                                     </div>
                                     <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
                                         <p className="text-sm text-gray-600">Duration</p>
-                                        <p className="text-lg font-semibold text-black">2+ Hours</p>
+                                        <p className="text-sm md:text-lg font-semibold text-black">2+ Hours</p>
                                     </div>
                                 </div>
 
@@ -323,6 +330,7 @@ fbq('track', 'PageView');
 
                             {/* Right Image */}
                             <div className="w-full relative">
+
                                 <Image
                                     src="/all.png"
                                     alt="Mastering Intraday Trading"
@@ -340,6 +348,8 @@ fbq('track', 'PageView');
                             </p>
                         </div>
                     </section>
+
+
 
                     <section className="bg-[#001d36] text-white py-16 px-4">
                         <div className="max-w-6xl mx-auto text-center">
@@ -403,10 +413,10 @@ fbq('track', 'PageView');
 
                             <div className="text-center mt-12">
 
-                                    <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
-                                        Register Now For Free
-                                    </button>
-                                    <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                                <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                    Register Now For Free
+                                </button>
+                                <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
                             </div>
                         </div>
@@ -436,16 +446,16 @@ fbq('track', 'PageView');
                         </div>
                     </div>
 
-                    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 shadow-md px-4 py-4">
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-4 max-w-6xl mx-auto">
+                    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 shadow-md px-4 py-2 md:py-4">
+                        <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-4 max-w-6xl mx-auto">
                             <div className="text-center md:text-left">
-                                <span className="text-2xl font-bold text-black block"><span className="line-through">₹499</span> FREE!!</span>
+                                <span className="text-lg md:text-2xl font-bold text-black block"><span className="line-through">₹499</span> FREE!!</span>
                                 <span className="text-gray-700 block">Offer ends on : {offerEnd}</span>
                             </div>
-                                <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
-                                    Register Now For Free
-                                </button>
-                                <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                            <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                Register Now For Free
+                            </button>
+                            <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
                         </div>
                     </div>
