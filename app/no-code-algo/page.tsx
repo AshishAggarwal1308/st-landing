@@ -285,7 +285,7 @@ fbq('track', 'PageView');
                                     alt="Mastering Intraday Trading"
                                     width={1920}
                                     height={1080}
-                                    className=" object-cover h-10 w-fit rounded-lg order-1 lg:order-2 "
+                                    className=" object-contain h-10 w-full rounded-lg order-1 lg:order-2 "
                                 />
                                 <h2 className="text-2xl md:text-4xl font-bold text-black">
                                     Masterclass on <span className="text-yellow-500">No Code Algo Trading</span>
