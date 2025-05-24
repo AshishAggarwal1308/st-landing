@@ -170,6 +170,7 @@ function Page() {
     const [UserName, setUserName] = useState("");
     const [UserPhone, setUserPhone] = useState("");
     const [UserEmail, setUserEmail] = useState("");
+    const [campName, setCampName] = useState("");
     const [wDateTime, setwDateTime] = useState("");
     const [offerEnd, setOfferEnd] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -184,8 +185,10 @@ function Page() {
         fetch(apiUrl)
             .then(response => response.json()).then(data => {
                 const wDate = new Date(data.wDateTime);
+                const campName = (data.code);
                 let wDateTime = formatDate_(wDate);
                 setwDateTime(wDateTime)
+                setCampName(campName)
 
                 //   setInterval("updateTimer()", 1000);
             }
@@ -241,6 +244,8 @@ function Page() {
         const data = {
             submittedAt: timestamp(),
             ...formData,
+            CampeignName: campName,
+            WorkShopTime: wDateTime,
             utm_source: urlParams.get("utm_source"),
             utm_medium: urlParams.get("utm_medium"),
             utm_campaign: urlParams.get("utm_campaign"),
