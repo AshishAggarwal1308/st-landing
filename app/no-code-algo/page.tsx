@@ -199,6 +199,58 @@ export const noCodeAlgoPoints = [
     },
 ];
 
+const strugglingin = [
+  {
+    number: 1,
+    text: (
+      <>
+        Struggling to <span className="text-orange-500 font-semibold">turn your trading ideas into automated strategies</span> without coding?
+      </>
+    ),
+  },
+  {
+    number: 2,
+    text: (
+      <>
+        Finding it hard to <span className="text-orange-500 font-semibold">test your strategies</span> before risking real money?
+      </>
+    ),
+  },
+  {
+    number: 3,
+    text: (
+      <>
+        Confused by <span className="text-orange-500 font-semibold">complex trading platforms and tools</span> that require coding knowledge?
+      </>
+    ),
+  },
+  {
+    number: 4,
+    text: (
+      <>
+        Don't know how to <span className="text-orange-500 font-semibold">set up automated buy/sell signals</span> effectively?
+      </>
+    ),
+  },
+  {
+    number: 5,
+    text: (
+      <>
+        Facing issues in <span className="text-orange-500 font-semibold">managing risk and stop losses</span> in your algo systems?
+      </>
+    ),
+  },
+  {
+    number: 6,
+    text: (
+      <>
+        Unsure which tools or platforms are best for <span className="text-orange-500 font-semibold">no-code algo trading</span>?
+      </>
+    ),
+  },
+];
+
+
 
 function Page() {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -379,6 +431,61 @@ fbq('track', 'PageView');
                     </section>
 
 
+                    <section className="w-full px-4 py-16 bg-white">
+                        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10">
+
+                            {/* Tutors Image */}
+                            <div className="w-full md:w-1/2">
+                                <img
+                                    src="/alltutors.png" // Replace with your actual group photo
+                                    alt="Our Expert Tutors"
+                                    className="w-full h-auto rounded-xl object-cover"
+                                />
+                            </div>
+
+                            {/* About Section */}
+                            <div className="w-full md:w-1/2">
+                                <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Our No-Code Algo Trading Mentors</h2>
+
+                                <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                                    Our team of tutors comprises experienced algorithmic traders, financial engineers, and educators who are passionate about democratizing algo trading. With a focus on **no-code platforms**, they empower traders of all backgrounds—whether you're a beginner or an active investor—to build powerful trading strategies without writing a single line of code.
+                                </p>
+
+                                <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                                    Every mentor on our team brings practical market knowledge, platform expertise, and a commitment to simplifying the complex. Through hands-on workshops, real-time simulations, and ongoing support, they ensure that learners not only understand the theory but can confidently apply it in live market conditions.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <section className="py-16 px-4">
+                        <div className="max-w-6xl mx-auto text-center">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-12">
+                                Are You <span className="text-orange-500">Struggling in?</span>
+                            </h2>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                                {strugglingin.map((point) => (
+                                    <div
+                                        key={point.number}
+                                        className="bg-white text-black flex items-start gap-4 p-5 rounded-xl shadow-md"
+                                    >
+                                        <span className="bg-orange-100 text-orange-600 font-semibold px-3 py-1 rounded-md">
+                                            {point.number}
+                                        </span>
+                                        <p className="text-left text-sm sm:text-base">{point.text}</p>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                Register Now For Free
+                            </button>
+                            <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                        </div>
+                    </section>
+
                     <section className="bg-[#001d36] text-white py-16 px-4">
                         <div className="max-w-4xl mx-auto">
                             <h2 className="text-4xl font-bold text-center mb-10 leading-snug">
@@ -446,13 +553,13 @@ fbq('track', 'PageView');
                         </div>
                     </div>
 
-                    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 shadow-md px-4 py-2 md:py-4">
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-4 max-w-6xl mx-auto">
+                    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white  inset-shadow-sm px-4 py-2 md:py-4">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-1 md:gap-4 max-w-6xl mx-auto">
                             <div className="text-center md:text-left">
                                 <span className="text-lg md:text-2xl font-bold text-black block"><span className="line-through">₹499</span> FREE!!</span>
                                 <span className="text-gray-700 block">Offer ends on : {offerEnd}</span>
                             </div>
-                            <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                            <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-1 px-3 md:px-6 md:py-3 rounded-md shadow-lg transition">
                                 Register Now For Free
                             </button>
                             <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
