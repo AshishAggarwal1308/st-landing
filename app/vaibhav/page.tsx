@@ -236,7 +236,7 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.com/masterclass/vaibhav/thankyou";
+        const redirectUrl = "https://stocktutor.co/vaibhav/thankyou";
 
         const data = {
             submittedAt: timestamp(),
