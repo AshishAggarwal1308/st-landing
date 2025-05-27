@@ -90,7 +90,7 @@ fbq('track', 'PageView');
                     </div>
                     <div className="w-full max-w-3xl bg-white rounded-md shadow-md border-t-4 border-yellow-400">
                         <div className="flex justify-center p-6">
-                            <Link href="https://chat.whatsapp.com/GFFvivtH2ka4B43bcvscKL">
+                            <Link href="https://chat.whatsapp.com/CeKrencF7LlEcK2mnDK7L4">
                                 <div className="w-full sm:w-auto bg-green-400 hover:bg-green-500 text-white font-semibold py-4 px-6 rounded-lg flex items-center justify-center text-xl cursor-pointer">
                                     <FaWhatsapp className="w-8 h-8 mr-3" />
                                     Join WhatsApp Group
