@@ -103,7 +103,7 @@ fbq('track', 'PageView');
                         <div className="flex flex-col sm:flex-row items-center justify-center p-4 gap-2 text-lg">
                             <div className="flex items-center gap-2">
                                 <span role="img" aria-label="calendar">📅</span>
-                                <span>Starts: 27th May, 2025 7:00 PM</span>
+                                <span>Starts: 28th May, 2025 6:00 PM</span>
                             </div>
                         </div>
                     </div>

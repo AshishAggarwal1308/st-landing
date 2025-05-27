@@ -415,7 +415,7 @@ function Page() {
                         <div className="max-w-6xl px-4 py-6 flex flex-col items-center space-y-4">
                             {/* Date and Time */}
                             <div className="bg-white shadow-md w-full px-6 py-4 rounded-xl text-center font-semibold text-lg sm:text-xl">
-                                27th May, 2025 7:00 PM
+                                28th May, 2025 6:00 PM
                             </div>
 
                             {/* Info Boxes */}
