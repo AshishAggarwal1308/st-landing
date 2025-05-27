@@ -23,6 +23,7 @@ import {
 
 import { formatDate_, timestamp } from '@/lib/masterclass_functions/formatDate';
 import Script from 'next/script';
+import Head from 'next/head';
 
 const topics = [
     {
@@ -248,6 +249,22 @@ function Page() {
 
     return (
         <>
+            <Head>
+                <script type="text/javascript" dangerouslySetInnerHTML={{
+                    __html: `
+          window._tfa = window._tfa || [];
+          window._tfa.push({notify: 'event', name: 'page_view', id: 1855234});
+          !function (t, f, a, x) {
+            if (!document.getElementById(x)) {
+              t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
+            }
+          }(document.createElement('script'),
+          document.getElementsByTagName('script')[0],
+          '//cdn.taboola.com/libtrc/unip/1855234/tfa.js',
+          'tb_tfa_script');
+        ` }} />
+            </Head>
+
             <Script id="meta-pixel" strategy="afterInteractive">
                 {`
                 !function(f,b,e,v,n,t,s)
