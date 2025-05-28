@@ -24,14 +24,20 @@ export function formatDate_(date: any) {
 
 export function timestamp() {
     const now = new Date();
-    const formattedTimestamp = now.toLocaleString("en-IN", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-    });
-    return formattedTimestamp;
+
+    const pad = (n: number) => n.toString().padStart(2, '0');
+
+    const day = pad(now.getDate());
+    const month = pad(now.getMonth() + 1); // Months are 0-indexed
+    const year = now.getFullYear();
+
+    let hours = now.getHours();
+    const minutes = pad(now.getMinutes());
+    const seconds = pad(now.getSeconds());
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const formattedHours = pad(hours);
+
+    return `${day}/${month}/${year} ${formattedHours}:${minutes}:${seconds} ${ampm}`;
 }
