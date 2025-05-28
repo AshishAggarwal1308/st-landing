@@ -217,7 +217,7 @@ function Page() {
             submittedAt: timestamp(),
             ...formData,
             CampeignName: campName,
-            WorkShopTime: "27th May, 2025 7:00 PM",
+            WorkShopTime: wDateTime,
             utm_source: urlParams.get("utm_source"),
             utm_medium: urlParams.get("utm_medium"),
             utm_campaign: urlParams.get("utm_campaign"),
@@ -415,7 +415,7 @@ function Page() {
                         <div className="max-w-6xl px-4 py-6 flex flex-col items-center space-y-4">
                             {/* Date and Time */}
                             <div className="bg-white shadow-md w-full px-6 py-4 rounded-xl text-center font-semibold text-lg sm:text-xl">
-                                28th May, 2025 6:00 PM
+                                {wDateTime}
                             </div>
 
                             {/* Info Boxes */}

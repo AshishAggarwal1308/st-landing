@@ -77,7 +77,7 @@ fbq('track', 'PageView');
 
           <div className="w-full max-w-3xl bg-white rounded-md shadow-md border-t-4 border-yellow-400">
             <div className="flex justify-center p-6">
-              <Link href="https://chat.whatsapp.com/CeKrencF7LlEcK2mnDK7L4">
+              <Link href={wAurl}>
                 <div className="w-full sm:w-auto bg-green-400 hover:bg-green-500 text-white font-semibold py-4 px-6 rounded-lg flex items-center justify-center text-xl cursor-pointer">
                   <FaWhatsapp className="w-8 h-8 mr-3" />
                   Join WhatsApp Group
@@ -90,7 +90,7 @@ fbq('track', 'PageView');
             <div className="flex flex-col sm:flex-row items-center justify-center p-4 gap-2 text-lg">
               <div className="flex items-center gap-2">
                 <span role="img" aria-label="calendar">📅</span>
-                <span>Starts: 28th May, 2025 6:00 PM</span>
+                <span>{wDateTime}</span>
               </div>
             </div>
           </div>
