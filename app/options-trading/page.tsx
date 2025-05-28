@@ -540,7 +540,7 @@ fbq('track', 'PageView');
                                     </div>
 
                                     <div>
-                                        <h3 className="font-semibold text-lg mb-2">What Aayushi Does Best?</h3>
+                                        <h3 className="font-semibold text-lg mb-2">What Sachin Does Best?</h3>
                                         <p>Makes complex market stuff easy to understand
                                             Teaches smart options trading strategies
                                             Shows how to grow money safely
