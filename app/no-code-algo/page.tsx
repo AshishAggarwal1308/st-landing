@@ -386,10 +386,11 @@ fbq('track', 'PageView');
                                 <Image
                                     src="/all.png"
                                     alt="Mastering Intraday Trading"
-                                    width={400}
-                                    height={400}
+                                    width={1920}
+                                    height={1080}
                                     className="w-full object-cover h-fit rounded-lg order-1 lg:order-2 "
                                 />
+                                
                             </div>
                         </div>
 
