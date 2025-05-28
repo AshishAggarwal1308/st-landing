@@ -287,8 +287,8 @@ fbq('track', 'PageView');
                         <p className="text-center text-xl md:text-2xl">Want to make more money with options without risking it all?</p>
                     </div>
 
-                    <div className="bg-white py-4 md:py-8 px-4 sm:px-6 lg:px-12 flex flex-col items-center space-y-2 md:space-y-10">
-                        <p className="text-2xl sm:text-3xl md:text-5xl text-center font-bold leading-7 md:leading-snug max-w-6xl">
+                    <div className="bg-white py-4 md:py-8 px-4 sm:px-6 lg:px-12 flex flex-col items-center space-y-2 md:space-y-4">
+                        <p className="text-2xl sm:text-3xl md:text-4xl text-center font-bold leading-7 md:leading-snug max-w-6xl">
                             Learn How Everyday Traders Are
                             <span className="text-blue-500"> Growing Their Profits</span> Consistently With Our Simple{' '}
                             <span className="text-blue-500">Options Trading Strategies.</span>
