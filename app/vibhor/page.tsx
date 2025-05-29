@@ -294,11 +294,10 @@ function Page() {
                     width="1"
                     style={{ display: 'none' }}
                     src="https://www.facebook.com/tr?id=10041111282577074&ev=PageView&noscript=1"
-
                 />
             </noscript>
 
-            <title>Stock Tutor Bootcamp - Vibhor Jain</title>
+            <title>Free Masterclass: Learn No-Code Algo Trading</title>
             <meta
                 name="description"
                 content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
