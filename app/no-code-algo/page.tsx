@@ -321,7 +321,7 @@ fbq('track', 'PageView');
 
                 />
             </noscript>
-            <title>Stock Tutor No Code Algo Masterclass</title>
+            <title>Free Masterclass: Learn No-Code Algo Trading</title>
             <meta
                 name="description"
                 content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
