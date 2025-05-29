@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FaCheckCircle } from 'react-icons/fa';
 import Link from 'next/link';
@@ -246,10 +246,25 @@ function Page() {
         }
     };
 
+    useEffect(() => {
+    // Add Taboola global function
+    (window as any)._tfa = (window as any)._tfa || [];
+    (window as any)._tfa.push({ notify: 'event', name: 'page_view', id: 1855234 });
+
+    // Check if the script already exists
+    if (!document.getElementById('tb_tfa_script')) {
+      const script = document.createElement('script');
+      script.src = '//cdn.taboola.com/libtrc/unip/1855234/tfa.js';
+      script.async = true;
+      script.id = 'tb_tfa_script';
+      document.getElementsByTagName('script')[0].parentNode?.insertBefore(script, document.getElementsByTagName('script')[0]);
+    }
+  }, []);
+
 
     return (
         <>
-            <Script id="taboola-pixel" strategy="afterInteractive">
+            {/* <Script id="taboola-pixel" strategy="afterInteractive">
                 {`
           window._tfa = window._tfa || [];
           window._tfa.push({notify: 'event', name: 'page_view', id: 1855234});
@@ -265,7 +280,7 @@ function Page() {
             '//cdn.taboola.com/libtrc/unip/1855234/tfa.js',
             'tb_tfa_script');
         `}
-            </Script>
+            </Script> */}
 
             <Script id="meta-pixel" strategy="afterInteractive">
                 {`
