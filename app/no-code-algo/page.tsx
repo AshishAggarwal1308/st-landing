@@ -258,6 +258,7 @@ function Page() {
     const [UserPhone, setUserPhone] = useState("");
     const [UserEmail, setUserEmail] = useState("");
     const [wDateTime, setwDateTime] = useState("");
+    const [wDate, setwDate] = useState("");
     const [campName, setCampName] = useState("");
     const [offerEnd, setOfferEnd] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -272,10 +273,13 @@ function Page() {
 
         fetch(apiUrl)
             .then(response => response.json()).then(data => {
-                const wDate = new Date(data.wDateTime);
+                const wDatetime = new Date(data.wDateTime);
+                const workDate = new Date(data.wDate);
                 const campName = (data.code);
-                let wDateTime = formatDate_(wDate);
+                let wDateTime = formatDate_(wDatetime);
+                let wDate = formatDate_(workDate);
                 setwDateTime(wDateTime)
+                setwDate(wDate)
                 setCampName(campName)
 
                 //   setInterval("updateTimer()", 1000);

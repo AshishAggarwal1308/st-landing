@@ -1,6 +1,8 @@
 import { timestamp } from "@/lib/masterclass_functions/formatDate";
 import Link from "next/link";
 import React, { useState } from "react";
+import { formatDate_ } from '@/lib/masterclass_functions/formatDate';
+
 
 interface PopupModalProps {
     isOpen: boolean;
@@ -14,6 +16,7 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
     const [UserPhone, setUserPhone] = useState("");
     const [UserEmail, setUserEmail] = useState("");
     const [wDateTime, setwDateTime] = useState("");
+    const [wDate, setwDate] = useState("");
     const [campName, setCampName] = useState("");
     const [offerEnd, setOfferEnd] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,6 +26,30 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
     const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    React.useEffect(() => {
+        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=generic";
+
+        fetch(apiUrl)
+            .then(response => response.json()).then(data => {
+                const wDatetime = new Date(data.wDateTime);
+                const workDate = new Date(data.wDate);
+                const campName = (data.code);
+                let wDateTime = formatDate_(wDatetime);
+                let wDate = formatDate_(workDate);
+                setwDateTime(wDateTime)
+                setwDate(wDate)
+                setCampName(campName)
+
+                //   setInterval("updateTimer()", 1000);
+            }
+            );
+
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Sep', 'Oct', 'Nov', 'December'];
+        var tomorrow = new Date();
+        tomorrow.setTime(tomorrow.getTime());
+
+        setOfferEnd(months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear())
+    }, [])
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setFormErrors({});
@@ -67,6 +94,7 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
             ...formData,
             CampeignName: campName,
             WorkShopTime: wDateTime,
+            WorkShopDate: wDate,
             utm_source: urlParams.get("utm_source"),
             utm_medium: urlParams.get("utm_medium"),
             utm_campaign: urlParams.get("utm_campaign"),
