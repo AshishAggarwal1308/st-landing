@@ -1,202 +1,711 @@
-import Image from "next/image";
-import Script from "next/script";
-import React from 'react';
-import { BarChart2, ArrowRight, BookOpen, Brain, Target, Users, Video, LineChart, Check } from 'lucide-react';
+'use client';
 
-const features = [
-  {
-    icon: <LineChart className="h-8 w-8 text-blue-600" />,
-    title: "Real-Time Market Analysis",
-    description: "Access live market data, advanced charting tools, and real-time trading simulations that mirror actual market conditions."
-  },
-  {
-    icon: <BookOpen className="h-8 w-8 text-blue-600" />,
-    title: "Comprehensive Curriculum",
-    description: "From basic concepts to advanced trading strategies, our structured learning path guides you through every aspect of stock trading."
-  },
-  {
-    icon: <Brain className="h-8 w-8 text-blue-600" />,
-    title: "AI-Powered Insights",
-    description: "Our advanced AI analyzes market trends, identifies patterns, and provides personalized recommendations to improve your trading decisions."
-  },
-  {
-    icon: <Target className="h-8 w-8 text-blue-600" />,
-    title: "Risk Management Tools",
-    description: "Learn to protect your investments with sophisticated risk management techniques and portfolio diversification strategies."
-  }
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { FaCheckCircle } from 'react-icons/fa';
+import Link from 'next/link';
+import { FaLanguage } from 'react-icons/fa';
+import { LuHourglass } from 'react-icons/lu';
+import {
+    PiPencilSimpleLineBold,
+    PiArrowCircleDownBold,
+    PiSmileySadBold,
+    PiChartBarBold,
+    PiBracketsSquareBold,
+} from 'react-icons/pi';
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import {
+    PiClipboardTextBold,
+    PiBookBookmarkBold,
+    PiTargetBold,
+    PiMonitorPlayBold,
+} from 'react-icons/pi';
+
+import { formatDate_, timestamp } from '@/lib/masterclass_functions/formatDate';
+import Script from 'next/script';
+import PopupModal from '../components/FormPopup';
+
+
+const topics = [
+    {
+        bold: 'Master Forex Basics:',
+        description: 'Understand currency pairs, pips, and how the Forex market works',
+    },
+    {
+        bold: 'Trade with Confidence:',
+        description: 'Learn how to analyze market trends and make smart trading decisions',
+    },
+    {
+        bold: 'Minimize Risks, Maximize Profits:',
+        description: 'Get strategies for managing risk and protecting your investments',
+    },
+    {
+        bold: 'Trade Management:',
+        description:
+            'Learn the fundamentals of entering, exiting, holding, stop loss, and setting targets to build a profitable trading strategy.',
+    },
+    {
+        bold: 'Trade Efficiently:',
+        description: 'Discover how to trade in just 15 minutes a day without complex indicators.',
+    },
+    {
+        bold: 'Stay Ahead of the Game:',
+        description: 'Learn how to keep up with global financial news and market changes.',
+    },
+    {
+        bold: '',
+        description: 'Which currency pair to trade?',
+    },
+    {
+        bold: '',
+        description: 'What time zone to select while trading?',
+    },
+    {
+        bold: '',
+        description: 'How to get free access to prop firms/funded accounts',
+    },
+    {
+        bold: '',
+        description: 'Bank zone strategy',
+    },
+    {
+        bold: '',
+        description: 'News-based trading',
+    },
 ];
 
+const whatyoulearn = [
+    {
+        icon: <PiPencilSimpleLineBold className="text-blue-500" size={30} />,
+        title: 'Feeling Stuck In The 9–To–5 Grind?',
+        description: "Do you lack time for trading due to the Indian Stock Market's Timing (9:15 AM to 3:30 PM)?",
+    },
+    {
+        icon: <PiArrowCircleDownBold className="text-blue-500" size={30} />,
+        title: 'Emotional Trading Leading To Losses?',
+        description: 'Letting fear and greed define your trades?',
+    },
+    {
+        icon: <PiSmileySadBold className="text-blue-500" size={30} />,
+        title: 'Confused By Technical Terms?',
+        description: 'Pips, lot sizes, candlesticks—do they sound overwhelming?',
+    },
+    {
+        icon: <PiChartBarBold className="text-blue-500" size={30} />,
+        title: 'Struggling With Entry And Exit Points?',
+        description: 'Not sure when to jump in or get out of a trade?',
+    },
+    {
+        icon: <PiBracketsSquareBold className="text-blue-500" size={30} />,
+        title: 'Overwhelmed By Market News?',
+        description: 'Unsure how to filter and use financial news to your advantage?',
+    },
+];
 const benefits = [
-  "Interactive learning modules adapted to your pace",
-  "Real-world case studies from successful traders",
-  "Live market simulation with virtual trading",
-  "Personal progress tracking and analytics",
-  "Expert-led webinars and workshops",
-  "24/7 access to learning resources"
+    {
+        icon: <PiClipboardTextBold className="text-blue-500" size={28} />,
+        title: 'Control Your Emotions:',
+        description: 'Develop A Trading Psychology That Helps You Maintain Control, Stick To Your Plan, And Achieve A Flow State While Trading',
+    },
+    {
+        icon: <PiBookBookmarkBold className="text-blue-500" size={28} />,
+        title: 'Gain Confidence In Your Trading',
+        description: 'Learn The Strategies That Professional Traders Use So You Can Make Informed Decisions And Trade With Confidence',
+    },
+    {
+        icon: <PiTargetBold className="text-blue-500" size={28} />,
+        title: 'Strategic Mastery:',
+        description:
+            'Learn Winning Strategies That Guide Your Entry, Exit, And Trade Management For Consistent Success And Maximum Returns',
+    },
+    {
+        icon: <PiMonitorPlayBold className="text-blue-500" size={28} />,
+        title: 'Imagine Earning Money Anytime, Anywhere:',
+        description:
+            'With Forex, The Market Is Open 24 Hours A Day, Allowing You To Trade Whenever It Fits Your Schedule.',
+    },
 ];
 
-const testimonials = [
-  {
-    quote: "StockTutor transformed my understanding of the stock market. The practical approach and real-time simulations gave me the confidence to start trading successfully.",
-    author: "Sarah Johnson",
-    role: "Independent Trader"
-  },
-  {
-    quote: "The AI-powered insights and comprehensive curriculum helped me develop a solid trading strategy. I've seen consistent growth in my portfolio since completing the program.",
-    author: "Michael Chen",
-    role: "Day Trader"
-  }
+const faqs = [
+    {
+        question: "Can I use these strategies for Forex Trading?",
+        answer: "Yes, these strategies are designed to be applicable to Forex trading as well."
+    },
+    {
+        question: "Who should take this Masterclass?",
+        answer: "Anyone interested in mastering Forex trading, from beginners to intermediate traders."
+    },
+    {
+        question: "Is it a live masterclass?",
+        answer: "Yes, it is a live interactive session led by expert traders."
+    },
+    {
+        question: "Is this free of cost, or do I have to pay anything extra for this?",
+        answer: "This masterclass is currently offered for ₹499 FREE, no additional cost involved."
+    },
+    {
+        question: "Will we get recordings of the sessions?",
+        answer: "Yes, recordings will be provided after the sessions for future reference."
+    }
 ];
-export default function Home() {
-  return (
-    <>
-      <Script
-                strategy="afterInteractive"
-                src="https://www.googletagmanager.com/gtag/js?id=AW-17066906976"
-            />
-            <Script id="google-ads" strategy="afterInteractive">
+export const noCodeAlgoPoints = [
+    {
+        number: 1,
+        text: (
+            <>
+                Understand the <span className="text-orange-500 font-semibold">basics of algorithmic trading</span> and how no-code platforms simplify it.
+            </>
+        ),
+    },
+    {
+        number: 2,
+        text: (
+            <>
+                Learn to <span className="text-orange-500 font-semibold">design and build trading strategies</span> without writing a single line of code.
+            </>
+        ),
+    },
+    {
+        number: 3,
+        text: (
+            <>
+                Use drag-and-drop tools to <span className="text-orange-500 font-semibold">automate entry, exit, and risk management</span> rules.
+            </>
+        ),
+    },
+    {
+        number: 4,
+        text: (
+            <>
+                Backtest your strategies with <span className="text-orange-500 font-semibold">historical data</span> to optimize performance.
+            </>
+        ),
+    },
+    {
+        number: 5,
+        text: (
+            <>
+                Deploy your algorithms on live markets using <span className="text-orange-500 font-semibold">integrated broker APIs</span> securely.
+            </>
+        ),
+    },
+    {
+        number: 6,
+        text: (
+            <>
+                Monitor and improve strategies in real time with <span className="text-orange-500 font-semibold">built-in analytics and alerts</span>.
+            </>
+        ),
+    },
+];
+
+const strugglingin = [
+    {
+        number: 1,
+        text: (
+            <>
+                Struggling to <span className="text-orange-500 font-semibold">turn your trading ideas into automated strategies</span> without coding?
+            </>
+        ),
+    },
+    {
+        number: 2,
+        text: (
+            <>
+                Finding it hard to <span className="text-orange-500 font-semibold">test your strategies</span> before risking real money?
+            </>
+        ),
+    },
+    {
+        number: 3,
+        text: (
+            <>
+                Confused by <span className="text-orange-500 font-semibold">complex trading platforms and tools</span> that require coding knowledge?
+            </>
+        ),
+    },
+    {
+        number: 4,
+        text: (
+            <>
+                Don't know how to <span className="text-orange-500 font-semibold">set up automated buy/sell signals</span> effectively?
+            </>
+        ),
+    },
+    {
+        number: 5,
+        text: (
+            <>
+                Facing issues in <span className="text-orange-500 font-semibold">managing risk and stop losses</span> in your algo systems?
+            </>
+        ),
+    },
+    {
+        number: 6,
+        text: (
+            <>
+                Unsure which tools or platforms are best for <span className="text-orange-500 font-semibold">no-code algo trading</span>?
+            </>
+        ),
+    },
+];
+
+
+
+function Page() {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [UserName, setUserName] = useState("");
+    const [UserPhone, setUserPhone] = useState("");
+    const [UserEmail, setUserEmail] = useState("");
+    const [wDateTime, setwDateTime] = useState("");
+    const [wDate, setwDate] = useState("");
+    const [campName, setCampName] = useState("");
+    const [offerEnd, setOfferEnd] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formErrors, setFormErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
+    const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isValidPhone = (phone: string) => /^[0-9]{10}$/.test(phone);
+    const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    React.useEffect(() => {
+        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=generic";
+
+        fetch(apiUrl)
+            .then(response => response.json()).then(data => {
+                const wDatetime = new Date(data.wDateTime);
+                const workDate = new Date(data.wDate);
+                const campName = (data.code);
+                let wDateTime = formatDate_(wDatetime);
+                let wDate = formatDate_(workDate);
+                setwDateTime(wDateTime)
+                setwDate(wDate)
+                setCampName(campName)
+
+                //   setInterval("updateTimer()", 1000);
+            }
+            );
+
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Sep', 'Oct', 'Nov', 'December'];
+        var tomorrow = new Date();
+        tomorrow.setTime(tomorrow.getTime());
+
+        setOfferEnd(months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear())
+    }, [])
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setFormErrors({});
+
+        const formData = {
+            name: UserName.trim(),
+            email: UserEmail.trim(),
+            phone: UserPhone.trim(),
+        };
+
+        let isValid = true;
+        const errors: typeof formErrors = {};
+
+
+        if (!formData.name) {
+            errors.name = "Name is required.";
+            isValid = false;
+        }
+
+        if (!isValidEmail(formData.email)) {
+            errors.email = "Invalid email address.";
+            isValid = false;
+        }
+
+        if (!isValidPhone(formData.phone)) {
+            errors.phone = "Invalid phone number.";
+            isValid = false;
+        }
+
+        if (!isValid) {
+            setFormErrors(errors);
+            return;
+        }
+
+        setIsSubmitting(true);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectUrl = "https://stocktutor.co/algo-trading/thankyou";
+
+        const data = {
+            submittedAt: timestamp(),
+            ...formData,
+            CampeignName: campName,
+            WorkShopTime: wDateTime,
+            WorkShopDate: wDate,
+            utm_source: urlParams.get("utm_source"),
+            utm_medium: urlParams.get("utm_medium"),
+            utm_campaign: urlParams.get("utm_campaign"),
+            utm_adgroup: urlParams.get("utm_adgroup"),
+            utm_content: urlParams.get("utm_content"),
+            utm_term: urlParams.get("utm_term"),
+            adsetName: urlParams.get("adset name"),
+            adName: urlParams.get("ad name"),
+            landingPageUrl: window.location.href,
+        };
+
+        try {
+            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+            window.location.href = redirectUrl;
+
+        } catch (error: any) {
+            console.error("Submission error:", error.message);
+            alert("An error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+
+    };
+
+
+    return (
+        <>
+            <Script id="meta-pixel" strategy="afterInteractive">
                 {`
-             window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+          !function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1690170988281403');
+fbq('track', 'PageView');
 
-  gtag('config', 'AW-17066906976');
 
-            `}
+        `}
             </Script>
+            <noscript>
+                <img
+                    height="1"
+                    width="1"
+                    style={{ display: 'none' }}
+                    src="https://www.facebook.com/tr?id=1690170988281403&ev=PageView&noscript=1"
 
-      <div className="min-h-screen bg-white">
-        {/* Header */}
-        <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div className="flex items-center space-x-2">
-              <BarChart2 className="h-8 w-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">StockTutor</span>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</a>
-              <a href="#benefits" className="text-gray-600 hover:text-blue-600 transition-colors">Benefits</a>
-              <a href="#testimonials" className="text-gray-600 hover:text-blue-600 transition-colors">Testimonials</a>
-            </nav>
-            
-          </div>
-        </header>
+                />
+            </noscript>
+            <title>Free Masterclass: Learn Algo Trading</title>
+            <meta
+                name="description"
+                content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
+            ></meta>
 
-        {/* Hero Section */}
-        <section className="pt-32 pb-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
-          <div className="container mx-auto px-4 text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Master the Art of Stock Trading
-            </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-              Join over 50,000 students who have transformed their trading journey with our comprehensive learning platform. Get access to real-time market data, expert-led courses, and AI-powered insights.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg text-lg font-medium transition-colors shadow-lg hover:shadow-xl inline-flex items-center justify-center">
-                Start Free Trial
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </button>
-            </div>
-            <p className="mt-6 text-sm text-blue-200">No credit card required • 14-day free trial • Cancel anytime</p>
-          </div>
-        </section>
 
-        {/* Features */}
-        <section id="features" className="py-20">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Everything You Need to Succeed in the Stock Market
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {features.map((feature, index) => (
-                <div key={index} className="bg-white p-8 rounded-xl border border-gray-200 hover:border-blue-500 transition-all hover:shadow-lg">
-                  <div className="h-16 w-16 rounded-lg bg-blue-50 flex items-center justify-center mb-6">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+            <main>
+                <div className="w-full">
+
+                    <section className="w-full flex flex-col items-center px-4 py-2 md:py-12 bg-white">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 md:gap-10 items-center">
+                            {/* Left Content */}
+
+                            <div className="order-2 lg:order-1 space-y-2 md:space-y-2" >
+                                <Image
+                                    src="https://stocktutor.com/_next/image?url=https%3A%2F%2Fst-staticimg.s3.ap-south-1.amazonaws.com%2Fassets%2Flogo.png&w=256&q=75"
+                                    alt="Mastering Intraday Trading"
+                                    width={1920}
+                                    height={1080}
+                                    className=" object-contain h-10 w-full rounded-lg order-1 lg:order-2 "
+                                />
+                                <h2 className="text-2xl md:text-4xl font-bold text-black">
+                                    Masterclass on <span className="text-yellow-500">No Code Algo Trading</span>
+                                </h2>
+                                {/* <p className="text-lg text-gray-700">
+                                    Over <span className="font-semibold text-yellow-500">100k learners</span> already enrolled in the masterclass.
+                                </p> */}
+                                <div>
+                                    <form className="space-y-1 w-full" onSubmit={handleSubmit} >
+                                        <div>
+                                            <label className="block mb-1 text-gray-700">Name</label>
+                                            <input
+                                                name="name"
+                                                placeholder="Enter Name"
+                                                onChange={(e) => setUserName(e.target.value)}
+                                                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+                                                required
+                                            />
+                                        </div>
+                                        {formErrors.name && <p className="text-red-500">{formErrors.name}</p>}
+
+                                        <div>
+                                            <label className="block mb-1 text-gray-700">Email</label>
+                                            <input
+                                                name="email"
+                                                onChange={(e) => setUserEmail(e.target.value)}
+                                                type="email"
+                                                placeholder="Enter Email"
+                                                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+                                                required
+                                            />
+                                        </div>
+                                        {formErrors.email && <p className="text-red-500">{formErrors.email}</p>}
+
+                                        <div>
+                                            <label className="block mb-1 text-gray-700">Phone</label>
+                                            <div className="flex">
+                                                <span className="flex items-center px-4 bg-gray-200 border border-r-0 rounded-l-md text-gray-700">
+                                                    IND
+                                                </span>
+                                                <input
+                                                    name="phone"
+                                                    placeholder="Enter Phone"
+                                                    onChange={(e) => setUserPhone(e.target.value)}
+                                                    className="w-full px-4 py-2 border border-l-0 rounded-r-md focus:outline-none focus:ring-2 focus:ring-black"
+                                                    required
+                                                />
+                                            </div>
+                                            {formErrors.phone && <p className="text-red-500">{formErrors.phone}</p>}
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            className="mt-4 w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold">
+                                            Register Now For Free
+                                        </button>
+                                    </form>
+                                </div>
+                                <Link href="#form">
+
+                                </Link>
+
+                                {/* User Avatars and Ratings */}
+                                <div className="flex items-center mt-4 space-x-3">
+                                    <div className="flex -space-x-2">
+                                        <Image src="/user1.jpg" alt="user1" width={32} height={32} className="rounded-full border-2 border-white" />
+                                        <Image src="/user2.jpg" alt="user2" width={32} height={32} className="rounded-full border-2 border-white" />
+                                        <Image src="/user3.jpg" alt="user3" width={32} height={32} className="rounded-full border-2 border-white" />
+                                    </div>
+                                    <span className="bg-orange-100 text-orange-600 px-2 py-1 rounded-full text-sm font-medium">48k+ Students</span>
+                                    <span className="text-sm text-gray-600">14k+ reviews (4.9 of 5)</span>
+                                </div>
+                            </div>
+
+                            {/* Right Image */}
+                            <div className="w-full relative">
+
+                                <Image
+                                    src="/all.png"
+                                    alt="Mastering Intraday Trading"
+                                    width={1920}
+                                    height={1080}
+                                    className="w-full object-cover h-fit rounded-lg order-1 lg:order-2 "
+                                />
+
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto p-4">
+                            <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
+                                <p className="text-sm text-gray-600">Masterclass Date</p>
+                                <p className="text-sm md:text-lg font-semibold text-black">{wDateTime}</p>
+                            </div>
+                            <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
+                                <p className="text-sm text-gray-600">Offer End</p>
+                                <p className="text-sm md:text-lg font-semibold text-black">{offerEnd}</p>
+                            </div>
+                            <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
+                                <p className="text-sm text-gray-600">Language</p>
+                                <p className="text-sm md:text-lg font-semibold text-black">Hindi</p>
+                            </div>
+                            <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
+                                <p className="text-sm text-gray-600">Duration</p>
+                                <p className="text-sm md:text-lg font-semibold text-black">2+ Hours</p>
+                            </div>
+                        </div>
+
+
+                        {/* Footer Text */}
+                        <div className="mt-10 max-w-7xl bg-orange-50 border border-orange-200 px-6 py-4 rounded-xl text-center">
+                            <p className="text-lg text-gray-700">
+                                Learn from <span className="font-semibold text-black">highly experienced tutors</span> expertise in trading, having taught over 10,000+ students and accumulated <span className="font-semibold text-yellow-500">13+ years of experience.</span>
+                            </p>
+                        </div>
+                    </section>
+
+
+
+                    <section className="bg-[#001d36] text-white py-16 px-4">
+                        <div className="max-w-6xl mx-auto text-center">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-12">
+                                What Will You <span className="text-orange-500">Learn?</span>
+                            </h2>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                                {noCodeAlgoPoints.map((point) => (
+                                    <div
+                                        key={point.number}
+                                        className="bg-white text-black flex items-start gap-4 p-5 rounded-xl shadow-md"
+                                    >
+                                        <span className="bg-orange-100 text-orange-600 font-semibold px-3 py-1 rounded-md">
+                                            {point.number}
+                                        </span>
+                                        <p className="text-left text-sm sm:text-base">{point.text}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <Link href="#form">
+                                <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                    Register Now For Free
+                                </button>
+                            </Link>
+
+                        </div>
+                    </section>
+
+
+                    <section className="w-full px-4 py-16 bg-white">
+                        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10">
+
+                            {/* Tutors Image */}
+                            <div className="w-full md:w-1/2">
+                                <img
+                                    src="/alltutors.png" // Replace with your actual group photo
+                                    alt="Our Expert Tutors"
+                                    className="w-full h-auto rounded-xl object-cover"
+                                />
+                            </div>
+
+                            {/* About Section */}
+                            <div className="w-full md:w-1/2">
+                                <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Our No-Code Algo Trading Mentors</h2>
+
+                                <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                                    Our team of tutors comprises experienced algorithmic traders, financial engineers, and educators who are passionate about democratizing algo trading. With a focus on **no-code platforms**, they empower traders of all backgrounds—whether you're a beginner or an active investor—to build powerful trading strategies without writing a single line of code.
+                                </p>
+
+                                <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                                    Every mentor on our team brings practical market knowledge, platform expertise, and a commitment to simplifying the complex. Through hands-on workshops, real-time simulations, and ongoing support, they ensure that learners not only understand the theory but can confidently apply it in live market conditions.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <section className="py-16 px-4">
+                        <div className="max-w-6xl mx-auto text-center">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-12">
+                                Are You <span className="text-orange-500">Struggling in?</span>
+                            </h2>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                                {strugglingin.map((point) => (
+                                    <div
+                                        key={point.number}
+                                        className="bg-white text-black flex items-start gap-4 p-5 rounded-xl shadow-md"
+                                    >
+                                        <span className="bg-orange-100 text-orange-600 font-semibold px-3 py-1 rounded-md">
+                                            {point.number}
+                                        </span>
+                                        <p className="text-left text-sm sm:text-base">{point.text}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <Link href="#form">
+                                <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                    Register Now For Free
+                                </button>
+                            </Link>
+                        </div>
+                    </section>
+
+                    <section className="bg-[#001d36] text-white py-16 px-4">
+                        <div className="max-w-4xl mx-auto">
+                            <h2 className="text-4xl font-bold text-center mb-10 leading-snug">
+                                Frequently Asked <span className="text-yellow-400">Questions</span>
+                            </h2>
+
+                            <div className="space-y-4">
+                                {faqs.map((faq, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-white text-black rounded-xl overflow-hidden shadow-lg transition-all duration-300"
+                                    >
+                                        <button
+                                            onClick={() => toggle(index)}
+                                            className="w-full flex items-center justify-between p-5 text-left font-semibold text-lg hover:bg-gray-100 transition-colors"
+                                        >
+                                            <span>{faq.question}</span>
+                                            {activeIndex === index ? (
+                                                <FiChevronUp className="text-xl" />
+                                            ) : (
+                                                <FiChevronDown className="text-xl" />
+                                            )}
+                                        </button>
+                                        {activeIndex === index && (
+                                            <div className="p-5 border-t bg-gray-50 text-gray-700 text-base">
+                                                {faq.answer}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="text-center mt-12">
+
+                                <Link href="#form">
+                                    <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                        Register Now For Free
+                                    </button>
+                                </Link>
+
+                            </div>
+                        </div>
+                    </section>
+
+                    <div className="bg-white pt-10 pb-40  px-4">
+                        <div className="max-w-5xl mx-auto">
+                            <p className="text-center text-sm text-gray-700 leading-relaxed">
+                                All content on this site is for educational purposes only and does not constitute financial advice.
+                                Investing in stocks involves risks, including the loss of principal. Past performance is not indicative
+                                of future results and is influenced by market conditions. Conduct your own research or consult a
+                                financial advisor before making any investment decisions. The author is not responsible for any financial
+                                losses or gains resulting from the use of this information.
+                                <br /><br />
+                                This site is not a part of the Facebook™ website or Facebook™ Inc. Additionally, this site is NOT endorsed
+                                by Facebook™ in any way. FACEBOOK™ is a trademark of FACEBOOK™, Inc.
+                                <br /><br />
+                                As stipulated by law, we can not and do not make any guarantees about your ability to get results or earn
+                                any money with our ideas, information, tools or strategies. We just want to help you by giving great content,
+                                direction and strategies that worked well for us and our students and that we believe can move you forward.
+                                <br /><br />
+                                All of our terms, privacy policies, and disclaimers for this program and website can be accessed via the link above.
+                                We feel transparency is important and we hold ourselves and you to a high standard of integrity.
+                                <br /><br />
+                                Thanks for stopping by. We hope this training and content brings you a lot of value.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white  inset-shadow-sm px-4 py-2 md:py-4">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-1 md:gap-4 max-w-6xl mx-auto">
+                            <div className="text-center md:text-left">
+                                <span className="text-lg md:text-2xl font-bold text-black block"><span className="line-through">₹499</span> FREE!!</span>
+                                <span className="text-gray-700 block">Offer ends on : {offerEnd}</span>
+                            </div>
+                            <Link href="#form">
+                                <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                    Register Now For Free
+                                </button>
+                            </Link>
+
+                        </div>
+                    </div>
+
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+            </main>
 
-        {/* Benefits */}
-        <section id="benefits" className="py-20 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Why Choose StockTutor?
-                </h2>
-                <p className="text-gray-600 mb-8 text-lg">
-                  Our platform combines cutting-edge technology with expert knowledge to provide you with the most comprehensive stock trading education available.
-                </p>
-                <ul className="space-y-4">
-                  {benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start">
-                      <Check className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
-                      <span className="text-gray-700">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                <h3 className="text-2xl font-bold mb-6">Learning Statistics</h3>
-                <div className="space-y-6">
-                  <div className="border-b border-gray-200 pb-4">
-                    <div className="text-3xl font-bold text-blue-600">50,000+</div>
-                    <div className="text-gray-600">Active Students</div>
-                  </div>
-                  <div className="border-b border-gray-200 pb-4">
-                    <div className="text-3xl font-bold text-blue-600">92%</div>
-                    <div className="text-gray-600">Success Rate</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-blue-600">1,000+</div>
-                    <div className="text-gray-600">Video Lessons</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Testimonials */}
-        <section id="testimonials" className="py-20 bg-blue-600 text-white">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Success Stories from Our Students
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
-                  <p className="text-lg mb-6">"{testimonial.quote}"</p>
-                  <div>
-                    <div className="font-medium">{testimonial.author}</div>
-                    <div className="text-blue-200">{testimonial.role}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        </>
 
-        {/* CTA */}
-        <section className="py-20 bg-gray-900 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Trading Journey?</h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join thousands of successful traders who started their journey with StockTutor.
-            </p>
-            
-            <p className="mt-6 text-sm text-gray-400">Start learning today with our risk-free 14-day trial</p>
-          </div>
-        </section>
-
-        {/* Footer */}
-
-      </div>
-    </>
-  );
+    );
 }
+
+export default Page;
