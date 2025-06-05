@@ -211,7 +211,17 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.co/vibhor/thankyou";
+        const hostname = window.location.hostname;
+
+        let redirectUrl = "";
+
+        if (hostname.includes("chahataggrawal.in")) {
+            redirectUrl = "https://stocktutor.chahataggrawal.in/vibhor/thankyou";
+        } else {
+            redirectUrl = "https://stocktutor.co/vibhor/thankyou";
+        }
+
+        window.location.href = redirectUrl;
 
         const data = {
             submittedAt: timestamp(),
@@ -247,19 +257,19 @@ function Page() {
     };
 
     useEffect(() => {
-    // Add Taboola global function
-    (window as any)._tfa = (window as any)._tfa || [];
-    (window as any)._tfa.push({ notify: 'event', name: 'page_view', id: 1855234 });
+        // Add Taboola global function
+        (window as any)._tfa = (window as any)._tfa || [];
+        (window as any)._tfa.push({ notify: 'event', name: 'page_view', id: 1855234 });
 
-    // Check if the script already exists
-    if (!document.getElementById('tb_tfa_script')) {
-      const script = document.createElement('script');
-      script.src = '//cdn.taboola.com/libtrc/unip/1855234/tfa.js';
-      script.async = true;
-      script.id = 'tb_tfa_script';
-      document.getElementsByTagName('script')[0].parentNode?.insertBefore(script, document.getElementsByTagName('script')[0]);
-    }
-  }, []);
+        // Check if the script already exists
+        if (!document.getElementById('tb_tfa_script')) {
+            const script = document.createElement('script');
+            script.src = '//cdn.taboola.com/libtrc/unip/1855234/tfa.js';
+            script.async = true;
+            script.id = 'tb_tfa_script';
+            document.getElementsByTagName('script')[0].parentNode?.insertBefore(script, document.getElementsByTagName('script')[0]);
+        }
+    }, []);
 
 
     return (

@@ -236,7 +236,17 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.co/vaibhav/thankyou";
+        const hostname = window.location.hostname;
+
+        let redirectUrl = "";
+
+        if (hostname.includes("chahataggrawal.in")) {
+            redirectUrl = "https://stocktutor.chahataggrawal.in/vaibhav/thankyou";
+        } else {
+            redirectUrl = "https://stocktutor.co/vaibhav/thankyou";
+        }
+
+        window.location.href = redirectUrl;
 
         const data = {
             submittedAt: timestamp(),
@@ -295,7 +305,7 @@ function Page() {
                     width="1"
                     style={{ display: 'none' }}
                     src="https://www.facebook.com/tr?id=1769144873815738&ev=PageView&noscript=1"
-                    />
+                />
             </noscript>
             <title>Stock Tutor Bootcamp - Vaibhav Batra</title>
             <meta

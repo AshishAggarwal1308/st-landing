@@ -87,7 +87,17 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
+        const hostname = window.location.hostname;
+
+        let redirectUrl = "";
+
+        if (hostname.includes("chahataggrawal.in")) {
+            redirectUrl = "https://stocktutor.chahataggrawal.in/no-code-algo/thankyou";
+        } else {
+            redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
+        }
+
+        window.location.href = redirectUrl;
 
         const data = {
             submittedAt: timestamp(),
