@@ -412,7 +412,7 @@ function Page() {
 
     return (
         <>
-            <Script id="meta-pixel" strategy="afterInteractive">
+            {/* <Script id="meta-pixel" strategy="afterInteractive">
                 {`
           !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -436,8 +436,8 @@ fbq('track', 'PageView');
                     src="https://www.facebook.com/tr?id=1690170988281403&ev=PageView&noscript=1"
 
                 />
-            </noscript>
-            <title>Free Masterclass: Learn Algo Trading</title>
+            </noscript> */}
+            <title>Advisory Subscription</title>
             <meta
                 name="description"
                 content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
