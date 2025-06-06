@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { FaCheckCircle } from 'react-icons/fa';
 import Link from 'next/link';
@@ -23,8 +24,6 @@ import {
 
 import { formatDate_, timestamp } from '@/lib/masterclass_functions/formatDate';
 import Script from 'next/script';
-import PopupModal from '../components/FormPopup';
-import { openRazorpayCheckout, submitFormToPabbly } from '../services/checkout.service';
 
 
 const topics = [
@@ -129,24 +128,24 @@ const benefits = [
 
 const faqs = [
     {
-        question: "Can I use these strategies for Forex Trading?",
-        answer: "Yes, these strategies are designed to be applicable to Forex trading as well."
+        question: "Is this Masterclass only for Forex trading?",
+        answer: "Yes, this Masterclass is dedicated to helping learners understand and trade effectively in the Forex market.",
     },
     {
-        question: "Who should take this Masterclass?",
-        answer: "Anyone interested in mastering Forex trading, from beginners to intermediate traders."
+        question: "Who is this Masterclass for?",
+        answer: "Anyone who wants to learn Forex trading—from beginners with no background to traders looking to sharpen their skills.",
     },
     {
-        question: "Is it a live masterclass?",
-        answer: "Yes, it is a live interactive session led by expert traders."
+        question: "Is it a live or recorded session?",
+        answer: "It is a live and interactive session led by experienced Forex traders.",
     },
     {
-        question: "Is this free of cost, or do I have to pay anything extra for this?",
-        answer: "This masterclass is currently offered for ₹499 FREE, no additional cost involved."
+        question: "Is there any cost involved?",
+        answer: "This Masterclass is offered for just ₹499 and currently being promoted as FREE. You won’t pay anything extra.",
     },
     {
-        question: "Will we get recordings of the sessions?",
-        answer: "Yes, recordings will be provided after the sessions for future reference."
+        question: "Will I get a recording after the session?",
+        answer: "Yes, the session recording will be shared with all participants for future reference.",
     }
 ];
 const noCodeAlgoPoints = [
@@ -154,7 +153,7 @@ const noCodeAlgoPoints = [
         number: 1,
         text: (
             <>
-                Understand the <span className="text-orange-500 font-semibold">basics of algorithmic trading</span> and how no-code platforms simplify it.
+                Get a clear understanding of the <span className="text-orange-500 font-semibold">Forex market structure</span> and currency pairs.
             </>
         ),
     },
@@ -162,7 +161,7 @@ const noCodeAlgoPoints = [
         number: 2,
         text: (
             <>
-                Learn to <span className="text-orange-500 font-semibold">design and build trading strategies</span> without writing a single line of code.
+                Learn how to <span className="text-orange-500 font-semibold">read charts and identify trends</span> in real time.
             </>
         ),
     },
@@ -170,7 +169,7 @@ const noCodeAlgoPoints = [
         number: 3,
         text: (
             <>
-                Use drag-and-drop tools to <span className="text-orange-500 font-semibold">automate entry, exit, and risk management</span> rules.
+                Master essential tools like <span className="text-orange-500 font-semibold">support, resistance, indicators, and price action</span>.
             </>
         ),
     },
@@ -178,7 +177,7 @@ const noCodeAlgoPoints = [
         number: 4,
         text: (
             <>
-                Backtest your strategies with <span className="text-orange-500 font-semibold">historical data</span> to optimize performance.
+                Discover <span className="text-orange-500 font-semibold">risk management strategies</span> to protect your capital.
             </>
         ),
     },
@@ -186,7 +185,7 @@ const noCodeAlgoPoints = [
         number: 5,
         text: (
             <>
-                Deploy your algorithms on live markets using <span className="text-orange-500 font-semibold">integrated broker APIs</span> securely.
+                Learn when to enter and exit trades using <span className="text-orange-500 font-semibold">high-probability setups</span>.
             </>
         ),
     },
@@ -194,18 +193,18 @@ const noCodeAlgoPoints = [
         number: 6,
         text: (
             <>
-                Monitor and improve strategies in real time with <span className="text-orange-500 font-semibold">built-in analytics and alerts</span>.
+                Get <span className="text-orange-500 font-semibold">real-world examples</span> from pro traders with live case studies.
             </>
         ),
     },
 ];
 
-const strugglingin = [
+const strugglingIn = [
     {
         number: 1,
         text: (
             <>
-                Struggling to <span className="text-orange-500 font-semibold">turn your trading ideas into automated strategies</span> without coding?
+                Struggling to <span className="text-orange-500 font-semibold">understand how the Forex market works</span>?
             </>
         ),
     },
@@ -213,7 +212,7 @@ const strugglingin = [
         number: 2,
         text: (
             <>
-                Finding it hard to <span className="text-orange-500 font-semibold">test your strategies</span> before risking real money?
+                Unsure how to <span className="text-orange-500 font-semibold">analyze charts and spot trade opportunities</span>?
             </>
         ),
     },
@@ -221,7 +220,7 @@ const strugglingin = [
         number: 3,
         text: (
             <>
-                Confused by <span className="text-orange-500 font-semibold">complex trading platforms and tools</span> that require coding knowledge?
+                Losing money due to <span className="text-orange-500 font-semibold">poor risk management and overtrading</span>?
             </>
         ),
     },
@@ -229,7 +228,7 @@ const strugglingin = [
         number: 4,
         text: (
             <>
-                Don't know how to <span className="text-orange-500 font-semibold">set up automated buy/sell signals</span> effectively?
+                Don't know when to <span className="text-orange-500 font-semibold">enter or exit a trade</span>?
             </>
         ),
     },
@@ -237,7 +236,7 @@ const strugglingin = [
         number: 5,
         text: (
             <>
-                Facing issues in <span className="text-orange-500 font-semibold">managing risk and stop losses</span> in your algo systems?
+                Feeling overwhelmed by <span className="text-orange-500 font-semibold">too many technical indicators and tools</span>?
             </>
         ),
     },
@@ -245,7 +244,7 @@ const strugglingin = [
         number: 6,
         text: (
             <>
-                Unsure which tools or platforms are best for <span className="text-orange-500 font-semibold">no-code algo trading</span>?
+                Tired of following tips and signals without <span className="text-orange-500 font-semibold">understanding the logic</span> behind them?
             </>
         ),
     },
@@ -268,6 +267,7 @@ function Page() {
     const isValidPhone = (phone: string) => /^[0-9]{10}$/.test(phone);
     const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const router = useRouter();
 
     React.useEffect(() => {
         const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=generic";
@@ -294,13 +294,6 @@ function Page() {
         setOfferEnd(months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear())
     }, [])
 
-    useEffect(() => {
-        const script = document.createElement("script");
-        script.src = "https://checkout.razorpay.com/v1/checkout.js";
-        script.async = true;
-        document.body.appendChild(script);
-    }, []);
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setFormErrors({});
@@ -314,18 +307,19 @@ function Page() {
         let isValid = true;
         const errors: typeof formErrors = {};
 
+
         if (!formData.name) {
             errors.name = "Name is required.";
             isValid = false;
         }
 
         if (!isValidEmail(formData.email)) {
-            errors.email = "Invalid email.";
+            errors.email = "Invalid email address.";
             isValid = false;
         }
 
         if (!isValidPhone(formData.phone)) {
-            errors.phone = "Invalid phone.";
+            errors.phone = "Invalid phone number.";
             isValid = false;
         }
 
@@ -337,9 +331,15 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.co/algolive/thankyou";
+        const hostname = window.location.hostname;
+        const redirectUrl = "https://stocktutor.co/forex/thankyou";
 
-        const utms = {
+        const data = {
+            submittedAt: timestamp(),
+            ...formData,
+            CampeignName: campName,
+            WorkShopTime: wDateTime,
+            WorkShopDate: wDate,
             utm_source: urlParams.get("utm_source"),
             utm_medium: urlParams.get("utm_medium"),
             utm_campaign: urlParams.get("utm_campaign"),
@@ -348,44 +348,28 @@ function Page() {
             utm_term: urlParams.get("utm_term"),
             adsetName: urlParams.get("adset name"),
             adName: urlParams.get("ad name"),
-        };
-
-        const payload = {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            campaignName: campName,
-            workshopDate: wDate,
-            workshopTime: wDateTime,
-            utms,
-            submittedAt: timestamp(),
             landingPageUrl: window.location.href,
         };
 
         try {
-            await submitFormToPabbly(payload);
-
-            openRazorpayCheckout({
-                name: formData.name,
-                email: formData.email,
-                phone: formData.phone,
-                amount: 100, // ₹299 in paise
-                onSuccess: () => {
-                    window.location.href = redirectUrl;
-                },
+            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
             });
+            window.location.href = redirectUrl;
+
         } catch (error: any) {
-            alert("Something went wrong.");
-            console.error("Error:", error.message);
+            console.error("Submission error:", error.message);
+            alert("An error occurred. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
+
     };
-
-
     return (
         <>
-            {/* <Script id="meta-pixel" strategy="afterInteractive">
+            <Script id="meta-pixel" strategy="afterInteractive">
                 {`
           !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -409,8 +393,8 @@ fbq('track', 'PageView');
                     src="https://www.facebook.com/tr?id=1690170988281403&ev=PageView&noscript=1"
 
                 />
-            </noscript> */}
-            <title>Free Masterclass: Learn Algo Trading</title>
+            </noscript>
+            <title>Free Masterclass: Learn Forex Trading</title>
             <meta
                 name="description"
                 content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
@@ -421,7 +405,7 @@ fbq('track', 'PageView');
                 <div className="w-full">
 
                     <section className="w-full flex flex-col items-center px-4 py-2 md:py-12 bg-white">
-                        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 md:gap-10 items-center">
+                        <div id="form" className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 md:gap-10 items-center" >
                             {/* Left Content */}
 
                             <div className="order-2 lg:order-1 space-y-2 md:space-y-2" >
@@ -433,7 +417,7 @@ fbq('track', 'PageView');
                                     className=" object-contain h-10 w-full rounded-lg order-1 lg:order-2 "
                                 />
                                 <h2 className="text-2xl md:text-4xl font-bold text-black">
-                                    Masterclass on <span className="text-yellow-500">No Code Algo Trading</span>
+                                    Masterclass on <span className="text-yellow-500">Forex Trading</span>
                                 </h2>
                                 {/* <p className="text-lg text-gray-700">
                                     Over <span className="font-semibold text-yellow-500">100k learners</span> already enrolled in the masterclass.
@@ -508,7 +492,7 @@ fbq('track', 'PageView');
                             <div className="w-full relative">
 
                                 <Image
-                                    src="/all.png"
+                                    src="/forex.jpg"
                                     alt="Mastering Intraday Trading"
                                     width={1920}
                                     height={1080}
@@ -583,7 +567,7 @@ fbq('track', 'PageView');
                             {/* Tutors Image */}
                             <div className="w-full md:w-1/2">
                                 <img
-                                    src="/alltutors.png" // Replace with your actual group photo
+                                    src="/forex.jpg" // Replace with your actual group photo
                                     alt="Our Expert Tutors"
                                     className="w-full h-auto rounded-xl object-cover"
                                 />
@@ -591,28 +575,25 @@ fbq('track', 'PageView');
 
                             {/* About Section */}
                             <div className="w-full md:w-1/2">
-                                <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Our No-Code Algo Trading Mentors</h2>
+                                <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Our <span className="text-orange-500">Forex Trading </span>Mentors</h2>
 
                                 <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                                    Our team of tutors comprises experienced algorithmic traders, financial engineers, and educators who are passionate about democratizing algo trading. With a focus on **no-code platforms**, they empower traders of all backgrounds—whether you're a beginner or an active investor—to build powerful trading strategies without writing a single line of code.
+                                    Shivansh Kush Sir is a seasoned Forex trader and mentor with years of hands-on experience in the global currency markets. Known for his clear teaching style and practical approach, he has helped thousands of students understand the core principles of Forex trading—from chart reading and technical analysis to real-time trade execution and risk management. Whether you're a complete beginner or someone looking to improve your trading consistency, Shivansh Sir makes complex concepts easy to grasp and apply.
                                 </p>
 
-                                <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                                    Every mentor on our team brings practical market knowledge, platform expertise, and a commitment to simplifying the complex. Through hands-on workshops, real-time simulations, and ongoing support, they ensure that learners not only understand the theory but can confidently apply it in live market conditions.
-                                </p>
                             </div>
                         </div>
                     </section>
 
 
-                    <section className="py-16 px-4">
+                    <section className="py-16 px-4 bg-[#001d36]">
                         <div className="max-w-6xl mx-auto text-center">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white">
                                 Are You <span className="text-orange-500">Struggling in?</span>
                             </h2>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                                {strugglingin.map((point) => (
+                                {strugglingIn.map((point) => (
                                     <div
                                         key={point.number}
                                         className="bg-white text-black flex items-start gap-4 p-5 rounded-xl shadow-md"
