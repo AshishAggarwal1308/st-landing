@@ -54,7 +54,7 @@ export const openRazorpayCheckout = (formData: {
     amount: formData.amount,
     currency: "INR",
     name: "StockTutor",
-    description: "Advisory Workshop",
+    description: "Free Masterclass",
     handler: function (response: any) {
       console.log("Payment success:", response);
       formData.onSuccess();
