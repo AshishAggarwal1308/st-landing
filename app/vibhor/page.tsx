@@ -313,7 +313,7 @@ function Page() {
             ></meta>
 
             <main>
-                <div className="w-full">
+                <div className="w-full text-black">
                     <div className="bg-yellow-500 py-4">
                         <p className="text-center text-xl md:text-2xl">Join the 2-hour <span className='font-bold'>“No Code Algo Trading”</span> Masterclass</p>
                     </div>

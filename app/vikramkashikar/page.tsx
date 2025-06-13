@@ -308,7 +308,7 @@ fbq('track', 'PageView');
             ></meta>
 
             <main>
-                <div className="w-full">
+                <div className="w-full text-black">
                     <div className="bg-yellow-500 py-4">
                         <p className="text-center text-xl md:text-2xl">Join Our No Code Algo Trading Masterclass & Learn…..</p>
                     </div>

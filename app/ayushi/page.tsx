@@ -293,11 +293,11 @@ fbq('track', 'PageView');
 
             <main>
                 <div className="w-full">
-                    <div className="bg-yellow-500 py-4">
+                    <div className="bg-yellow-500 py-4 text-black">
                         <p className="text-center text-xl md:text-2xl">Join Our Forex Trading Masterclass & Learn…..</p>
                     </div>
 
-                    <div className="bg-white py-4 md:py-12 px-4 sm:px-6 lg:px-12 flex flex-col items-center space-y-2 md:space-y-10">
+                    <div className="bg-white text-black py-4 md:py-12 px-4 sm:px-6 lg:px-12 flex flex-col items-center space-y-2 md:space-y-10">
                         <p className="text-2xl sm:text-3xl md:text-5xl text-center font-bold leading-7 md:leading-snug max-w-6xl">
                             Forex trading isn&apos;t luck.{' '}
                             <span className="text-blue-500">It&apos;s learned.</span> Build your trading mindset with an{' '}
