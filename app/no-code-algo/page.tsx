@@ -148,7 +148,7 @@ const faqs = [
         answer: "Yes, recordings will be provided after the sessions for future reference."
     }
 ];
-export const noCodeAlgoPoints = [
+const noCodeAlgoPoints = [
     {
         number: 1,
         text: (
@@ -330,7 +330,7 @@ fbq('track', 'PageView');
 
 
             <main>
-                <div className="w-full">
+                <div className="w-full text-black">
 
                     <section className="w-full flex flex-col items-center px-4 py-2 md:py-12 bg-white">
                         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 md:gap-10 items-start">

@@ -292,7 +292,7 @@ fbq('track', 'PageView');
 
 
             <main>
-                <div className="w-full">
+                <div className="w-full text-black">
                     <div className="bg-yellow-500 py-4">
                         <p className="text-center text-xl md:text-2xl">Want to make more money with options without risking it all?</p>
                     </div>
