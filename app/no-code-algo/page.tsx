@@ -101,6 +101,7 @@ const whatyoulearn = [
         description: 'Unsure how to filter and use financial news to your advantage?',
     },
 ];
+
 const benefits = [
     {
         icon: <PiClipboardTextBold className="text-blue-500" size={28} />,
@@ -148,6 +149,7 @@ const faqs = [
         answer: "Yes, recordings will be provided after the sessions for future reference."
     }
 ];
+
 const noCodeAlgoPoints = [
     {
         number: 1,
@@ -200,54 +202,54 @@ const noCodeAlgoPoints = [
 ];
 
 const strugglingin = [
-  {
-    number: 1,
-    text: (
-      <>
-        Struggling to <span className="text-orange-500 font-semibold">turn your trading ideas into automated strategies</span> without coding?
-      </>
-    ),
-  },
-  {
-    number: 2,
-    text: (
-      <>
-        Finding it hard to <span className="text-orange-500 font-semibold">test your strategies</span> before risking real money?
-      </>
-    ),
-  },
-  {
-    number: 3,
-    text: (
-      <>
-        Confused by <span className="text-orange-500 font-semibold">complex trading platforms and tools</span> that require coding knowledge?
-      </>
-    ),
-  },
-  {
-    number: 4,
-    text: (
-      <>
-        Don't know how to <span className="text-orange-500 font-semibold">set up automated buy/sell signals</span> effectively?
-      </>
-    ),
-  },
-  {
-    number: 5,
-    text: (
-      <>
-        Facing issues in <span className="text-orange-500 font-semibold">managing risk and stop losses</span> in your algo systems?
-      </>
-    ),
-  },
-  {
-    number: 6,
-    text: (
-      <>
-        Unsure which tools or platforms are best for <span className="text-orange-500 font-semibold">no-code algo trading</span>?
-      </>
-    ),
-  },
+    {
+        number: 1,
+        text: (
+            <>
+                Struggling to <span className="text-orange-500 font-semibold">turn your trading ideas into automated strategies</span> without coding?
+            </>
+        ),
+    },
+    {
+        number: 2,
+        text: (
+            <>
+                Finding it hard to <span className="text-orange-500 font-semibold">test your strategies</span> before risking real money?
+            </>
+        ),
+    },
+    {
+        number: 3,
+        text: (
+            <>
+                Confused by <span className="text-orange-500 font-semibold">complex trading platforms and tools</span> that require coding knowledge?
+            </>
+        ),
+    },
+    {
+        number: 4,
+        text: (
+            <>
+                Don't know how to <span className="text-orange-500 font-semibold">set up automated buy/sell signals</span> effectively?
+            </>
+        ),
+    },
+    {
+        number: 5,
+        text: (
+            <>
+                Facing issues in <span className="text-orange-500 font-semibold">managing risk and stop losses</span> in your algo systems?
+            </>
+        ),
+    },
+    {
+        number: 6,
+        text: (
+            <>
+                Unsure which tools or platforms are best for <span className="text-orange-500 font-semibold">no-code algo trading</span>?
+            </>
+        ),
+    },
 ];
 
 
@@ -293,6 +295,79 @@ function Page() {
         setOfferEnd(months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear())
     }, [])
 
+    const handleSubmit = async (e: React.FormEvent) => {
+            e.preventDefault();
+            setFormErrors({});
+    
+            const formData = {
+                name: UserName.trim(),
+                email: UserEmail.trim(),
+                phone: UserPhone.trim(),
+            };
+    
+            let isValid = true;
+            const errors: typeof formErrors = {};
+    
+    
+            if (!formData.name) {
+                errors.name = "Name is required.";
+                isValid = false;
+            }
+    
+            if (!isValidEmail(formData.email)) {
+                errors.email = "Invalid email address.";
+                isValid = false;
+            }
+    
+            if (!isValidPhone(formData.phone)) {
+                errors.phone = "Invalid phone number.";
+                isValid = false;
+            }
+    
+            if (!isValid) {
+                setFormErrors(errors);
+                return;
+            }
+    
+            setIsSubmitting(true);
+    
+            const urlParams = new URLSearchParams(window.location.search);
+            const hostname = window.location.hostname;
+            const redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
+    
+            const data = {
+                submittedAt: timestamp(),
+                ...formData,
+                CampeignName: campName,
+                WorkShopTime: wDateTime,
+                WorkShopDate: wDate,
+                utm_source: urlParams.get("utm_source"),
+                utm_medium: urlParams.get("utm_medium"),
+                utm_campaign: urlParams.get("utm_campaign"),
+                utm_adgroup: urlParams.get("utm_adgroup"),
+                utm_content: urlParams.get("utm_content"),
+                utm_term: urlParams.get("utm_term"),
+                adsetName: urlParams.get("adset name"),
+                adName: urlParams.get("ad name"),
+                landingPageUrl: window.location.href,
+            };
+    
+            try {
+                const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                });
+                window.location.href = redirectUrl;
+    
+            } catch (error: any) {
+                console.error("Submission error:", error.message);
+                alert("An error occurred. Please try again.");
+            } finally {
+                setIsSubmitting(false);
+            }
+    
+        };
 
 
     return (
@@ -333,7 +408,7 @@ fbq('track', 'PageView');
                 <div className="w-full text-black">
 
                     <section className="w-full flex flex-col items-center px-4 py-2 md:py-12 bg-white">
-                        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 md:gap-10 items-start">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 md:gap-10 items-center">
                             {/* Left Content */}
 
                             <div className="order-2 lg:order-1 space-y-2 md:space-y-2" >
@@ -344,35 +419,66 @@ fbq('track', 'PageView');
                                     height={1080}
                                     className=" object-contain h-10 w-full rounded-lg order-1 lg:order-2 "
                                 />
-                                <h2 className="text-2xl md:text-4xl font-bold text-black">
+                                {/* <h2 className="text-2xl md:text-4xl font-bold text-black">
                                     Masterclass on <span className="text-yellow-500">No Code Algo Trading</span>
-                                </h2>
-                                <p className="text-lg text-gray-700">
-                                    Over <span className="font-semibold text-yellow-500">100k learners</span> already enrolled in the masterclass.
-                                </p>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
-                                        <p className="text-sm text-gray-600">Masterclass Date</p>
-                                        <p className="text-sm md:text-lg font-semibold text-black">{wDateTime}</p>
-                                    </div>
-                                    <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
-                                        <p className="text-sm text-gray-600">Offer End</p>
-                                        <p className="text-sm md:text-lg font-semibold text-black">{offerEnd}</p>
-                                    </div>
-                                    <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
-                                        <p className="text-sm text-gray-600">Language</p>
-                                        <p className="text-sm md:text-lg font-semibold text-black">Hindi</p>
-                                    </div>
-                                    <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
-                                        <p className="text-sm text-gray-600">Duration</p>
-                                        <p className="text-sm md:text-lg font-semibold text-black">2+ Hours</p>
-                                    </div>
-                                </div>
+                                </h2> */}
+                                {/* <p className="text-lg text-gray-700">
+                                                        Over <span className="font-semibold text-yellow-500">100k learners</span> already enrolled in the masterclass.
+                                                    </p> */}
+                                <div>
+                                    <form className="space-y-1 w-full" onSubmit={handleSubmit} >
+                                        <div>
+                                            <label className="block mb-1 text-gray-700">Name</label>
+                                            <input
+                                                name="name"
+                                                placeholder="Enter Name"
+                                                onChange={(e) => setUserName(e.target.value)}
+                                                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+                                                required
+                                            />
+                                        </div>
+                                        {formErrors.name && <p className="text-red-500">{formErrors.name}</p>}
 
-                                <button onClick={() => setIsModalOpen(true)} className="mt-4 w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold">
-                                    Register Now For Free
-                                </button>
-                                <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                                        <div>
+                                            <label className="block mb-1 text-gray-700">Email</label>
+                                            <input
+                                                name="email"
+                                                onChange={(e) => setUserEmail(e.target.value)}
+                                                type="email"
+                                                placeholder="Enter Email"
+                                                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+                                                required
+                                            />
+                                        </div>
+                                        {formErrors.email && <p className="text-red-500">{formErrors.email}</p>}
+
+                                        <div>
+                                            <label className="block mb-1 text-gray-700">Phone</label>
+                                            <div className="flex">
+                                                <span className="flex items-center px-4 bg-gray-200 border border-r-0 rounded-l-md text-gray-700">
+                                                    IND
+                                                </span>
+                                                <input
+                                                    name="phone"
+                                                    placeholder="Enter Phone"
+                                                    onChange={(e) => setUserPhone(e.target.value)}
+                                                    className="w-full px-4 py-2 border border-l-0 rounded-r-md focus:outline-none focus:ring-2 focus:ring-black"
+                                                    required
+                                                />
+                                            </div>
+                                            {formErrors.phone && <p className="text-red-500">{formErrors.phone}</p>}
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            className="mt-4 w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold">
+                                            Register Now For Free
+                                        </button>
+                                    </form>
+                                </div>
+                                <Link href="#form">
+
+                                </Link>
+
                                 {/* User Avatars and Ratings */}
                                 <div className="flex items-center mt-4 space-x-3">
                                     <div className="flex -space-x-2">
@@ -389,15 +495,35 @@ fbq('track', 'PageView');
                             <div className="w-full relative">
 
                                 <Image
-                                    src="/all.png"
+                                    src="/no-code-algo.jpg"
                                     alt="Mastering Intraday Trading"
                                     width={1920}
                                     height={1080}
                                     className="w-full object-cover h-fit rounded-lg order-1 lg:order-2 "
                                 />
-                                
+
                             </div>
                         </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto p-4">
+                            <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
+                                <p className="text-sm text-gray-600">Masterclass Date</p>
+                                <p className="text-sm md:text-lg font-semibold text-black">{wDateTime}</p>
+                            </div>
+                            <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
+                                <p className="text-sm text-gray-600">Offer End</p>
+                                <p className="text-sm md:text-lg font-semibold text-black">{offerEnd}</p>
+                            </div>
+                            <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
+                                <p className="text-sm text-gray-600">Language</p>
+                                <p className="text-sm md:text-lg font-semibold text-black">Hindi</p>
+                            </div>
+                            <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl">
+                                <p className="text-sm text-gray-600">Duration</p>
+                                <p className="text-sm md:text-lg font-semibold text-black">2+ Hours</p>
+                            </div>
+                        </div>
+
 
                         {/* Footer Text */}
                         <div className="mt-10 max-w-7xl bg-orange-50 border border-orange-200 px-6 py-4 rounded-xl text-center">
@@ -441,7 +567,7 @@ fbq('track', 'PageView');
                             {/* Tutors Image */}
                             <div className="w-full md:w-1/2">
                                 <img
-                                    src="/alltutors.png" // Replace with your actual group photo
+                                    src="/no-code-algo.jpg" // Replace with your actual group photo
                                     alt="Our Expert Tutors"
                                     className="w-full h-auto rounded-xl object-cover"
                                 />
@@ -449,14 +575,10 @@ fbq('track', 'PageView');
 
                             {/* About Section */}
                             <div className="w-full md:w-1/2">
-                                <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Our No-Code Algo Trading Mentors</h2>
+                                <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Your <span className="text-orange-500">Algo Trading</span> Mentors</h2>
 
                                 <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                                    Our team of tutors comprises experienced algorithmic traders, financial engineers, and educators who are passionate about democratizing algo trading. With a focus on **no-code platforms**, they empower traders of all backgrounds—whether you're a beginner or an active investor—to build powerful trading strategies without writing a single line of code.
-                                </p>
-
-                                <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                                    Every mentor on our team brings practical market knowledge, platform expertise, and a commitment to simplifying the complex. Through hands-on workshops, real-time simulations, and ongoing support, they ensure that learners not only understand the theory but can confidently apply it in live market conditions.
+                                    Annie Choudhary is a seasoned algorithmic trader and educator, dedicated to making algo trading accessible for everyone. As a <strong>NISM-certified expert</strong> with over 6 years of experience, she specializes in teaching <strong>no-code trading strategies</strong> that eliminate the need for complex programming. Annie has empowered over 2000+ traders—ranging from beginners to active investors—to confidently build and automate trading systems without writing a single line of code.
                                 </p>
                             </div>
                         </div>
