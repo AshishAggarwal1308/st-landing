@@ -296,78 +296,78 @@ function Page() {
     }, [])
 
     const handleSubmit = async (e: React.FormEvent) => {
-            e.preventDefault();
-            setFormErrors({});
-    
-            const formData = {
-                name: UserName.trim(),
-                email: UserEmail.trim(),
-                phone: UserPhone.trim(),
-            };
-    
-            let isValid = true;
-            const errors: typeof formErrors = {};
-    
-    
-            if (!formData.name) {
-                errors.name = "Name is required.";
-                isValid = false;
-            }
-    
-            if (!isValidEmail(formData.email)) {
-                errors.email = "Invalid email address.";
-                isValid = false;
-            }
-    
-            if (!isValidPhone(formData.phone)) {
-                errors.phone = "Invalid phone number.";
-                isValid = false;
-            }
-    
-            if (!isValid) {
-                setFormErrors(errors);
-                return;
-            }
-    
-            setIsSubmitting(true);
-    
-            const urlParams = new URLSearchParams(window.location.search);
-            const hostname = window.location.hostname;
-            const redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
-    
-            const data = {
-                submittedAt: timestamp(),
-                ...formData,
-                CampeignName: campName,
-                WorkShopTime: wDateTime,
-                WorkShopDate: wDate,
-                utm_source: urlParams.get("utm_source"),
-                utm_medium: urlParams.get("utm_medium"),
-                utm_campaign: urlParams.get("utm_campaign"),
-                utm_adgroup: urlParams.get("utm_adgroup"),
-                utm_content: urlParams.get("utm_content"),
-                utm_term: urlParams.get("utm_term"),
-                adsetName: urlParams.get("adset name"),
-                adName: urlParams.get("ad name"),
-                landingPageUrl: window.location.href,
-            };
-    
-            try {
-                const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data),
-                });
-                window.location.href = redirectUrl;
-    
-            } catch (error: any) {
-                console.error("Submission error:", error.message);
-                alert("An error occurred. Please try again.");
-            } finally {
-                setIsSubmitting(false);
-            }
-    
+        e.preventDefault();
+        setFormErrors({});
+
+        const formData = {
+            name: UserName.trim(),
+            email: UserEmail.trim(),
+            phone: UserPhone.trim(),
         };
+
+        let isValid = true;
+        const errors: typeof formErrors = {};
+
+
+        if (!formData.name) {
+            errors.name = "Name is required.";
+            isValid = false;
+        }
+
+        if (!isValidEmail(formData.email)) {
+            errors.email = "Invalid email address.";
+            isValid = false;
+        }
+
+        if (!isValidPhone(formData.phone)) {
+            errors.phone = "Invalid phone number.";
+            isValid = false;
+        }
+
+        if (!isValid) {
+            setFormErrors(errors);
+            return;
+        }
+
+        setIsSubmitting(true);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const hostname = window.location.hostname;
+        const redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
+
+        const data = {
+            submittedAt: timestamp(),
+            ...formData,
+            CampeignName: campName,
+            WorkShopTime: wDateTime,
+            WorkShopDate: wDate,
+            utm_source: urlParams.get("utm_source"),
+            utm_medium: urlParams.get("utm_medium"),
+            utm_campaign: urlParams.get("utm_campaign"),
+            utm_adgroup: urlParams.get("utm_adgroup"),
+            utm_content: urlParams.get("utm_content"),
+            utm_term: urlParams.get("utm_term"),
+            adsetName: urlParams.get("adset name"),
+            adName: urlParams.get("ad name"),
+            landingPageUrl: window.location.href,
+        };
+
+        try {
+            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+            window.location.href = redirectUrl;
+
+        } catch (error: any) {
+            console.error("Submission error:", error.message);
+            alert("An error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+
+    };
 
 
     return (
@@ -407,7 +407,7 @@ fbq('track', 'PageView');
             <main>
                 <div className="w-full text-black">
 
-                    <section className="w-full flex flex-col items-center px-4 py-2 md:py-12 bg-white">
+                    <section className="w-full flex flex-col items-center px-4 py-2 md:py-12 bg-white" id="form">
                         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 md:gap-10 items-center">
                             {/* Left Content */}
 
@@ -553,10 +553,11 @@ fbq('track', 'PageView');
                                 ))}
                             </div>
 
-                            <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
-                                Register Now For Free
-                            </button>
-                            <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                            <Link href="#form">
+                                <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                    Register Now For Free
+                                </button>
+                            </Link>
                         </div>
                     </section>
 
@@ -605,10 +606,11 @@ fbq('track', 'PageView');
                                 ))}
                             </div>
 
-                            <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
-                                Register Now For Free
-                            </button>
-                            <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                            <Link href="#form">
+                                <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                    Register Now For Free
+                                </button>
+                            </Link>
                         </div>
                     </section>
 
@@ -646,10 +648,11 @@ fbq('track', 'PageView');
 
                             <div className="text-center mt-12">
 
-                                <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
-                                    Register Now For Free
-                                </button>
-                                <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                                <Link href="#form">
+                                    <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                        Register Now For Free
+                                    </button>
+                                </Link>
 
                             </div>
                         </div>
@@ -685,10 +688,11 @@ fbq('track', 'PageView');
                                 <span className="text-lg md:text-2xl font-bold text-black block"><span className="line-through">₹499</span> FREE!!</span>
                                 <span className="text-gray-700 block">Offer ends on : {offerEnd}</span>
                             </div>
-                            <button onClick={() => setIsModalOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-1 px-3 md:px-6 md:py-3 rounded-md shadow-lg transition">
-                                Register Now For Free
-                            </button>
-                            <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                            <Link href="#form">
+                                <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
+                                    Register Now For Free
+                                </button>
+                            </Link>
 
                         </div>
                     </div>
