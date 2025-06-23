@@ -269,6 +269,7 @@ function Page() {
     const isValidPhone = (phone: string) => /^[0-9]{10}$/.test(phone);
     const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     React.useEffect(() => {
         const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=generic";
@@ -470,8 +471,13 @@ fbq('track', 'PageView');
                                         </div>
                                         <button
                                             type="submit"
-                                            className="mt-4 w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold">
-                                            Register Now For Free
+                                            disabled={loading}
+                                            className={`mt-4 w-full px-6 py-3 rounded-lg cursor-pointer font-semibold text-white ${loading
+                                                ? 'bg-gray-400 cursor-not-allowed'
+                                                : 'bg-gradient-to-r from-orange-400 to-orange-600'
+                                                }`}
+                                        >
+                                            {loading ? 'Registering...' : 'Register Now For Free'}
                                         </button>
                                     </form>
                                 </div>
