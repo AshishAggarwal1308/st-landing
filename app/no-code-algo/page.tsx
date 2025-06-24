@@ -6,6 +6,8 @@ import { FaCheckCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { FaLanguage } from 'react-icons/fa';
 import { LuHourglass } from 'react-icons/lu';
+import Swal from 'sweetalert2';
+
 import {
     PiPencilSimpleLineBold,
     PiArrowCircleDownBold,
@@ -309,7 +311,6 @@ function Page() {
         let isValid = true;
         const errors: typeof formErrors = {};
 
-
         if (!formData.name) {
             errors.name = "Name is required.";
             isValid = false;
@@ -354,20 +355,35 @@ function Page() {
         };
 
         try {
-            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
+            const response = await fetch(
+                `https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                }
+            );
+
+            await Swal.fire({
+                icon: 'success',
+                title: 'Submitted Successfully!',
+                text: 'Redirecting to thank you page...',
+                timer: 2000,
+                showConfirmButton: false,
             });
+
             window.location.href = redirectUrl;
 
         } catch (error: any) {
             console.error("Submission error:", error.message);
-            alert("An error occurred. Please try again.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Submission Failed',
+                text: 'An error occurred. Please try again.',
+            });
         } finally {
-            setIsSubmitting(false);
+            setLoading(false);
         }
-
     };
 
 
