@@ -270,7 +270,6 @@ function Page() {
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const isValidPhone = (phone: string) => /^[0-9]{10}$/.test(phone);
     const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
     React.useEffect(() => {
@@ -300,6 +299,7 @@ function Page() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         setFormErrors({});
 
         const formData = {
@@ -488,18 +488,15 @@ fbq('track', 'PageView');
                                         <button
                                             type="submit"
                                             disabled={loading}
-                                            className={`mt-4 w-full text-2xl px-6 py-3 rounded-lg cursor-pointer font-semibold text-white ${loading
-                                                ? 'bg-gray-400 cursor-not-allowed'
-                                                : 'bg-gradient-to-r from-orange-400 to-orange-600'
+                                            className={`mt-4 w-full text-xl px-6 py-3 rounded-lg font-semibold text-white ${loading
+                                                    ? 'bg-gray-400 cursor-not-allowed'
+                                                    : 'bg-gradient-to-r from-orange-400 to-orange-600'
                                                 }`}
                                         >
-                                            {loading ? 'Submitting...' : 'Submit'}
+                                            {loading ? 'Submitting...' : 'Submit Now'}
                                         </button>
                                     </form>
                                 </div>
-                                <Link href="#form">
-
-                                </Link>
 
                                 {/* User Avatars and Ratings */}
                                 <div className="flex items-center mt-4 space-x-3">
