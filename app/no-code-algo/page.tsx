@@ -472,12 +472,12 @@ fbq('track', 'PageView');
                                         <button
                                             type="submit"
                                             disabled={loading}
-                                            className={`mt-4 w-full px-6 py-3 rounded-lg cursor-pointer font-semibold text-white ${loading
+                                            className={`mt-4 w-full text-2xl px-6 py-3 rounded-lg cursor-pointer font-semibold text-white ${loading
                                                 ? 'bg-gray-400 cursor-not-allowed'
                                                 : 'bg-gradient-to-r from-orange-400 to-orange-600'
                                                 }`}
                                         >
-                                            {loading ? 'Submitting...' : 'Submit Now'}
+                                            {loading ? 'Submitting...' : 'Submit'}
                                         </button>
                                     </form>
                                 </div>
