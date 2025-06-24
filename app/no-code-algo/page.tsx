@@ -477,7 +477,7 @@ fbq('track', 'PageView');
                                                 : 'bg-gradient-to-r from-orange-400 to-orange-600'
                                                 }`}
                                         >
-                                            {loading ? 'Registering...' : 'Register Now For Free'}
+                                            {loading ? 'Submitting...' : 'Submit Now'}
                                         </button>
                                     </form>
                                 </div>
