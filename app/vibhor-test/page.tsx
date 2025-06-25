@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FaCheckCircle } from 'react-icons/fa';
 import Link from 'next/link';
@@ -272,17 +272,14 @@ function Page() {
     const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
 
     React.useEffect(() => {
-        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=generic";
+        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=vibhor";
 
         fetch(apiUrl)
             .then(response => response.json()).then(data => {
-                const wDatetime = new Date(data.wDateTime);
-                const workDate = new Date(data.wDate);
+                const wDate = new Date(data.wDateTime);
                 const campName = (data.code);
-                let wDateTime = formatDate_(wDatetime);
-                let wDate = formatDate_(workDate);
+                let wDateTime = formatDate_(wDate);
                 setwDateTime(wDateTime)
-                setwDate(wDate)
                 setCampName(campName)
 
                 //   setInterval("updateTimer()", 1000);
@@ -295,6 +292,7 @@ function Page() {
 
         setOfferEnd(months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear())
     }, [])
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -332,14 +330,13 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
+        const redirectUrl = "https://stocktutor.co/vibhor/thankyou";
 
         const data = {
             submittedAt: timestamp(),
             ...formData,
             CampeignName: campName,
             WorkShopTime: wDateTime,
-            WorkShopDate: wDate,
             utm_source: urlParams.get("utm_source"),
             utm_medium: urlParams.get("utm_medium"),
             utm_campaign: urlParams.get("utm_campaign"),
@@ -353,7 +350,7 @@ function Page() {
 
 
         try {
-            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`, {
+            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzMzA0MzM1MjY5NTUzMjUxM2Ii_pc`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
@@ -368,34 +365,48 @@ function Page() {
         }
     };
 
+    useEffect(() => {
+        // Add Taboola global function
+        (window as any)._tfa = (window as any)._tfa || [];
+        (window as any)._tfa.push({ notify: 'event', name: 'page_view', id: 1855234 });
+
+        // Check if the script already exists
+        if (!document.getElementById('tb_tfa_script')) {
+            const script = document.createElement('script');
+            script.src = '//cdn.taboola.com/libtrc/unip/1855234/tfa.js';
+            script.async = true;
+            script.id = 'tb_tfa_script';
+            document.getElementsByTagName('script')[0].parentNode?.insertBefore(script, document.getElementsByTagName('script')[0]);
+        }
+    }, []);
+
 
     return (
         <>
             <Script id="meta-pixel" strategy="afterInteractive">
                 {`
-          !function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1690170988281403');
-fbq('track', 'PageView');
+                !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '10041111282577074');
+                fbq('track', 'PageView');
 
-
-        `}
+                `}
             </Script>
             <noscript>
                 <img
                     height="1"
                     width="1"
                     style={{ display: 'none' }}
-                    src="https://www.facebook.com/tr?id=1690170988281403&ev=PageView&noscript=1"
-
+                    src="https://www.facebook.com/tr?id=10041111282577074&ev=PageView&noscript=1"
                 />
             </noscript>
+
             <title>Free Masterclass: Learn No-Code Algo Trading</title>
             <meta
                 name="description"
@@ -497,7 +508,7 @@ fbq('track', 'PageView');
                             <div className="w-full relative">
 
                                 <Image
-                                    src="/no-code-algo.png"
+                                    src="/vibhor-algo.webp"
                                     alt="Mastering Intraday Trading"
                                     width={1920}
                                     height={1080}
@@ -570,7 +581,7 @@ fbq('track', 'PageView');
                             {/* Tutors Image */}
                             <div className="w-full md:w-1/2">
                                 <img
-                                    src="/no-code-algo.png" // Replace with your actual group photo
+                                    src="/vibhor-algo.webp" // Replace with your actual group photo
                                     alt="Our Expert Tutors"
                                     className="w-full h-auto rounded-xl object-cover"
                                 />
@@ -581,7 +592,7 @@ fbq('track', 'PageView');
                                 <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Your <span className="text-orange-500">Algo Trading</span> Mentors</h2>
 
                                 <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                                    Annie Choudhary is a seasoned algorithmic trader and educator, dedicated to making algo trading accessible for everyone. As a <strong>NISM-certified expert</strong> with over 6 years of experience, she specializes in teaching <strong>no-code trading strategies</strong> that eliminate the need for complex programming. Annie has empowered over 2000+ traders—ranging from beginners to active investors—to confidently build and automate trading systems without writing a single line of code.
+                                    Vibhor Jain is a highly respected trader and educator known for his sharp analytical skills and deep expertise in price action and volume-based trading. With years of hands-on market experience, he has mentored thousands of aspiring traders, helping them decode market behavior and develop a disciplined trading mindset. Vibhor’s practical teaching style focuses on clarity, consistency, and real-world application—making him a go-to mentor for those looking to master intraday and positional strategies with confidence.
                                 </p>
                             </div>
                         </div>
