@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { FaCheckCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { FaLanguage } from 'react-icons/fa';
 import { LuHourglass } from 'react-icons/lu';
-import Swal from 'sweetalert2';
-
 import {
     PiPencilSimpleLineBold,
     PiArrowCircleDownBold,
@@ -25,7 +24,6 @@ import {
 
 import { formatDate_, timestamp } from '@/lib/masterclass_functions/formatDate';
 import Script from 'next/script';
-import PopupModal from '../components/FormPopup';
 
 
 const topics = [
@@ -103,7 +101,6 @@ const whatyoulearn = [
         description: 'Unsure how to filter and use financial news to your advantage?',
     },
 ];
-
 const benefits = [
     {
         icon: <PiClipboardTextBold className="text-blue-500" size={28} />,
@@ -131,33 +128,32 @@ const benefits = [
 
 const faqs = [
     {
-        question: "Can I use these strategies for Forex Trading?",
-        answer: "Yes, these strategies are designed to be applicable to Forex trading as well."
+        question: "Is this Masterclass only for Forex trading?",
+        answer: "Yes, this Masterclass is dedicated to helping learners understand and trade effectively in the Forex market.",
     },
     {
-        question: "Who should take this Masterclass?",
-        answer: "Anyone interested in mastering Forex trading, from beginners to intermediate traders."
+        question: "Who is this Masterclass for?",
+        answer: "Anyone who wants to learn Forex trading—from beginners with no background to traders looking to sharpen their skills.",
     },
     {
-        question: "Is it a live masterclass?",
-        answer: "Yes, it is a live interactive session led by expert traders."
+        question: "Is it a live or recorded session?",
+        answer: "It is a live and interactive session led by experienced Forex traders.",
     },
     {
-        question: "Is this free of cost, or do I have to pay anything extra for this?",
-        answer: "This masterclass is currently offered for ₹499 FREE, no additional cost involved."
+        question: "Is there any cost involved?",
+        answer: "This Masterclass is offered for just ₹499 and currently being promoted as FREE. You won’t pay anything extra.",
     },
     {
-        question: "Will we get recordings of the sessions?",
-        answer: "Yes, recordings will be provided after the sessions for future reference."
+        question: "Will I get a recording after the session?",
+        answer: "Yes, the session recording will be shared with all participants for future reference.",
     }
 ];
-
 const noCodeAlgoPoints = [
     {
         number: 1,
         text: (
             <>
-                Understand the <span className="text-orange-500 font-semibold">basics of algorithmic trading</span> and how no-code platforms simplify it.
+                Get a clear understanding of the <span className="text-orange-500 font-semibold">Forex market structure</span> and currency pairs.
             </>
         ),
     },
@@ -165,7 +161,7 @@ const noCodeAlgoPoints = [
         number: 2,
         text: (
             <>
-                Learn to <span className="text-orange-500 font-semibold">design and build trading strategies</span> without writing a single line of code.
+                Learn how to <span className="text-orange-500 font-semibold">read charts and identify trends</span> in real time.
             </>
         ),
     },
@@ -173,7 +169,7 @@ const noCodeAlgoPoints = [
         number: 3,
         text: (
             <>
-                Use drag-and-drop tools to <span className="text-orange-500 font-semibold">automate entry, exit, and risk management</span> rules.
+                Master essential tools like <span className="text-orange-500 font-semibold">support, resistance, indicators, and price action</span>.
             </>
         ),
     },
@@ -181,7 +177,7 @@ const noCodeAlgoPoints = [
         number: 4,
         text: (
             <>
-                Backtest your strategies with <span className="text-orange-500 font-semibold">historical data</span> to optimize performance.
+                Discover <span className="text-orange-500 font-semibold">risk management strategies</span> to protect your capital.
             </>
         ),
     },
@@ -189,7 +185,7 @@ const noCodeAlgoPoints = [
         number: 5,
         text: (
             <>
-                Deploy your algorithms on live markets using <span className="text-orange-500 font-semibold">integrated broker APIs</span> securely.
+                Learn when to enter and exit trades using <span className="text-orange-500 font-semibold">high-probability setups</span>.
             </>
         ),
     },
@@ -197,18 +193,18 @@ const noCodeAlgoPoints = [
         number: 6,
         text: (
             <>
-                Monitor and improve strategies in real time with <span className="text-orange-500 font-semibold">built-in analytics and alerts</span>.
+                Get <span className="text-orange-500 font-semibold">real-world examples</span> from pro traders with live case studies.
             </>
         ),
     },
 ];
 
-const strugglingin = [
+const strugglingIn = [
     {
         number: 1,
         text: (
             <>
-                Struggling to <span className="text-orange-500 font-semibold">turn your trading ideas into automated strategies</span> without coding?
+                Struggling to <span className="text-orange-500 font-semibold">understand how the Forex market works</span>?
             </>
         ),
     },
@@ -216,7 +212,7 @@ const strugglingin = [
         number: 2,
         text: (
             <>
-                Finding it hard to <span className="text-orange-500 font-semibold">test your strategies</span> before risking real money?
+                Unsure how to <span className="text-orange-500 font-semibold">analyze charts and spot trade opportunities</span>?
             </>
         ),
     },
@@ -224,7 +220,7 @@ const strugglingin = [
         number: 3,
         text: (
             <>
-                Confused by <span className="text-orange-500 font-semibold">complex trading platforms and tools</span> that require coding knowledge?
+                Losing money due to <span className="text-orange-500 font-semibold">poor risk management and overtrading</span>?
             </>
         ),
     },
@@ -232,7 +228,7 @@ const strugglingin = [
         number: 4,
         text: (
             <>
-                Don't know how to <span className="text-orange-500 font-semibold">set up automated buy/sell signals</span> effectively?
+                Don't know when to <span className="text-orange-500 font-semibold">enter or exit a trade</span>?
             </>
         ),
     },
@@ -240,7 +236,7 @@ const strugglingin = [
         number: 5,
         text: (
             <>
-                Facing issues in <span className="text-orange-500 font-semibold">managing risk and stop losses</span> in your algo systems?
+                Feeling overwhelmed by <span className="text-orange-500 font-semibold">too many technical indicators and tools</span>?
             </>
         ),
     },
@@ -248,7 +244,7 @@ const strugglingin = [
         number: 6,
         text: (
             <>
-                Unsure which tools or platforms are best for <span className="text-orange-500 font-semibold">no-code algo trading</span>?
+                Tired of following tips and signals without <span className="text-orange-500 font-semibold">understanding the logic</span> behind them?
             </>
         ),
     },
@@ -270,16 +266,21 @@ function Page() {
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const isValidPhone = (phone: string) => /^[0-9]{10}$/.test(phone);
     const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const router = useRouter();
 
     React.useEffect(() => {
-        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=vibhor";
+        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=ayushi";
 
         fetch(apiUrl)
             .then(response => response.json()).then(data => {
-                const wDate = new Date(data.wDateTime);
+                const wDatetime = new Date(data.wDateTime);
+                const workDate = new Date(data.wDate);
                 const campName = (data.code);
-                let wDateTime = formatDate_(wDate);
+                let wDateTime = formatDate_(wDatetime);
+                let wDate = formatDate_(workDate);
                 setwDateTime(wDateTime)
+                setwDate(wDate)
                 setCampName(campName)
 
                 //   setInterval("updateTimer()", 1000);
@@ -292,7 +293,6 @@ function Page() {
 
         setOfferEnd(months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear())
     }, [])
-
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -330,13 +330,14 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.co/vibhor/thankyou";
+        const redirectUrl = "https://stocktutor.co/ayushi-forex-trading/thankyou";
 
         const data = {
             submittedAt: timestamp(),
             ...formData,
             CampeignName: campName,
             WorkShopTime: wDateTime,
+            WorkShopDate: wDate,
             utm_source: urlParams.get("utm_source"),
             utm_medium: urlParams.get("utm_medium"),
             utm_campaign: urlParams.get("utm_campaign"),
@@ -350,7 +351,7 @@ function Page() {
 
 
         try {
-            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzMzA0MzM1MjY5NTUzMjUxM2Ii_pc`, {
+            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzMzA0M2Q1MjZjNTUzZDUxMzMi_pc`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
@@ -365,49 +366,37 @@ function Page() {
         }
     };
 
-    useEffect(() => {
-        // Add Taboola global function
-        (window as any)._tfa = (window as any)._tfa || [];
-        (window as any)._tfa.push({ notify: 'event', name: 'page_view', id: 1855234 });
-
-        // Check if the script already exists
-        if (!document.getElementById('tb_tfa_script')) {
-            const script = document.createElement('script');
-            script.src = '//cdn.taboola.com/libtrc/unip/1855234/tfa.js';
-            script.async = true;
-            script.id = 'tb_tfa_script';
-            document.getElementsByTagName('script')[0].parentNode?.insertBefore(script, document.getElementsByTagName('script')[0]);
-        }
-    }, []);
 
 
     return (
         <>
             <Script id="meta-pixel" strategy="afterInteractive">
                 {`
-                !function(f,b,e,v,n,t,s)
-                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                n.queue=[];t=b.createElement(e);t.async=!0;
-                t.src=v;s=b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t,s)}(window, document,'script',
-                'https://connect.facebook.net/en_US/fbevents.js');
-                fbq('init', '10041111282577074');
-                fbq('track', 'PageView');
+          !function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1834827303964862');
+fbq('track', 'PageView');
 
-                `}
+        `}
             </Script>
             <noscript>
                 <img
                     height="1"
                     width="1"
                     style={{ display: 'none' }}
-                    src="https://www.facebook.com/tr?id=10041111282577074&ev=PageView&noscript=1"
+                    src="https://www.facebook.com/tr?id=1834827303964862&ev=PageView&noscript=1"
+
                 />
             </noscript>
 
-            <title>Free Masterclass: Learn No-Code Algo Trading</title>
+
+            <title>Free Masterclass: Learn Forex Trading</title>
             <meta
                 name="description"
                 content="Learn about StockTutor mission, values, and dedication to providing top-notch stock market education. Discover how we help traders and investors achieve success in the stock market."
@@ -430,11 +419,11 @@ function Page() {
                                     className=" object-contain h-10 w-full rounded-lg order-1 lg:order-2 "
                                 />
                                 {/* <h2 className="text-2xl md:text-4xl font-bold text-black">
-                                    Masterclass on <span className="text-yellow-500">No Code Algo Trading</span>
-                                </h2> */}
+                                                        Masterclass on <span className="text-yellow-500">No Code Algo Trading</span>
+                                                    </h2> */}
                                 {/* <p className="text-lg text-gray-700">
-                                                        Over <span className="font-semibold text-yellow-500">100k learners</span> already enrolled in the masterclass.
-                                                    </p> */}
+                                                                            Over <span className="font-semibold text-yellow-500">100k learners</span> already enrolled in the masterclass.
+                                                                        </p> */}
                                 <div>
                                     <form className="space-y-2 w-full" onSubmit={handleSubmit} >
                                         <div>
@@ -482,7 +471,7 @@ function Page() {
                                             type="submit"
                                             disabled={isSubmitting}
                                             className={`w-full py-2 rounded-md transition text-xl text-white
-                                    ${isSubmitting
+                                                        ${isSubmitting
                                                     ? "bg-gray-400 cursor-not-allowed"
                                                     : "bg-gradient-to-r from-orange-400 to-orange-600 cursor-pointer"
                                                 }`}
@@ -508,7 +497,7 @@ function Page() {
                             <div className="w-full relative">
 
                                 <Image
-                                    src="/vibhor-algo.jpg"
+                                    src="/ayushi-forex.jpg"
                                     alt="Mastering Intraday Trading"
                                     width={1920}
                                     height={1080}
@@ -546,6 +535,8 @@ function Page() {
                         </div>
                     </section>
 
+
+
                     <section className="bg-[#001d36] text-white py-16 px-4">
                         <div className="max-w-6xl mx-auto text-center">
                             <h2 className="text-3xl md:text-4xl font-bold mb-12">
@@ -565,12 +556,12 @@ function Page() {
                                     </div>
                                 ))}
                             </div>
-
                             <Link href="#form">
                                 <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
                                     Register Now For Free
                                 </button>
                             </Link>
+
                         </div>
                     </section>
 
@@ -581,7 +572,7 @@ function Page() {
                             {/* Tutors Image */}
                             <div className="w-full md:w-1/2">
                                 <img
-                                    src="/vibhor-algo.jpg" // Replace with your actual group photo
+                                    src="/ayushi-forex.jpg" // Replace with your actual group photo
                                     alt="Our Expert Tutors"
                                     className="w-full h-auto rounded-xl object-cover"
                                 />
@@ -589,24 +580,25 @@ function Page() {
 
                             {/* About Section */}
                             <div className="w-full md:w-1/2">
-                                <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Your <span className="text-orange-500">Algo Trading</span> Mentors</h2>
+                                <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Our <span className="text-orange-500">Forex Trading </span>Mentors</h2>
 
                                 <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                                    Vibhor Jain is a highly respected trader and educator known for his sharp analytical skills and deep expertise in price action and volume-based trading. With years of hands-on market experience, he has mentored thousands of aspiring traders, helping them decode market behavior and develop a disciplined trading mindset. Vibhor’s practical teaching style focuses on clarity, consistency, and real-world application—making him a go-to mentor for those looking to master intraday and positional strategies with confidence.
+                                    Ayushi Ma'am is a dedicated trading mentor and educator, well-regarded for her deep understanding of stock markets and options trading. With a passion for simplifying financial concepts, she has guided thousands of learners in mastering the art of strategic trading—from market psychology and risk control to technical patterns and execution. Her interactive sessions and structured teaching approach make her a favorite among students aiming for consistent growth and confident decision-making in the markets.
                                 </p>
+
                             </div>
                         </div>
                     </section>
 
 
-                    <section className="py-16 px-4">
+                    <section className="py-16 px-4 bg-[#001d36]">
                         <div className="max-w-6xl mx-auto text-center">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white">
                                 Are You <span className="text-orange-500">Struggling in?</span>
                             </h2>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                                {strugglingin.map((point) => (
+                                {strugglingIn.map((point) => (
                                     <div
                                         key={point.number}
                                         className="bg-white text-black flex items-start gap-4 p-5 rounded-xl shadow-md"
@@ -618,7 +610,6 @@ function Page() {
                                     </div>
                                 ))}
                             </div>
-
                             <Link href="#form">
                                 <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition">
                                     Register Now For Free
