@@ -380,9 +380,8 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1690170988281403');
+fbq('init', '1834827303964862');
 fbq('track', 'PageView');
-
 
         `}
             </Script>
@@ -391,10 +390,12 @@ fbq('track', 'PageView');
                     height="1"
                     width="1"
                     style={{ display: 'none' }}
-                    src="https://www.facebook.com/tr?id=1690170988281403&ev=PageView&noscript=1"
+                    src="https://www.facebook.com/tr?id=1834827303964862&ev=PageView&noscript=1"
 
                 />
             </noscript>
+
+
             <title>Free Masterclass: Learn Forex Trading</title>
             <meta
                 name="description"
@@ -403,7 +404,7 @@ fbq('track', 'PageView');
 
 
             <main>
-                <div className="w-full">
+                <div className="w-full text-black">
 
                     <section className="w-full flex flex-col items-center px-4 py-2 md:py-12 bg-white" id="form">
                         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 md:gap-10 items-center">
@@ -496,7 +497,7 @@ fbq('track', 'PageView');
                             <div className="w-full relative">
 
                                 <Image
-                                    src="/no-code-algo.png"
+                                    src="/ayushi-forex.jpg"
                                     alt="Mastering Intraday Trading"
                                     width={1920}
                                     height={1080}
@@ -571,7 +572,7 @@ fbq('track', 'PageView');
                             {/* Tutors Image */}
                             <div className="w-full md:w-1/2">
                                 <img
-                                    src="/no-code-algo.png" // Replace with your actual group photo
+                                    src="/ayushi-forex.jpg" // Replace with your actual group photo
                                     alt="Our Expert Tutors"
                                     className="w-full h-auto rounded-xl object-cover"
                                 />

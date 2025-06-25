@@ -508,7 +508,7 @@ function Page() {
                             <div className="w-full relative">
 
                                 <Image
-                                    src="/vibhor-algo.webp"
+                                    src="/vibhor-algo.jpg"
                                     alt="Mastering Intraday Trading"
                                     width={1920}
                                     height={1080}
@@ -581,7 +581,7 @@ function Page() {
                             {/* Tutors Image */}
                             <div className="w-full md:w-1/2">
                                 <img
-                                    src="/vibhor-algo.webp" // Replace with your actual group photo
+                                    src="/vibhor-algo.jpg" // Replace with your actual group photo
                                     alt="Our Expert Tutors"
                                     className="w-full h-auto rounded-xl object-cover"
                                 />
