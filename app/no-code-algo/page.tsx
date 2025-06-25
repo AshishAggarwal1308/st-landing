@@ -270,7 +270,6 @@ function Page() {
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const isValidPhone = (phone: string) => /^[0-9]{10}$/.test(phone);
     const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
-    const [loading, setLoading] = useState(false);
 
     React.useEffect(() => {
         const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=generic";
@@ -299,7 +298,6 @@ function Page() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true);
         setFormErrors({});
 
         const formData = {
@@ -334,7 +332,6 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const hostname = window.location.hostname;
         const redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
 
         const data = {
@@ -354,35 +351,20 @@ function Page() {
             landingPageUrl: window.location.href,
         };
 
+
         try {
-            const response = await fetch(
-                `https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data),
-                }
-            );
-
-            await Swal.fire({
-                icon: 'success',
-                title: 'Submitted Successfully!',
-                text: 'Redirecting to thank you page...',
-                timer: 2000,
-                showConfirmButton: false,
+            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
             });
-
             window.location.href = redirectUrl;
 
         } catch (error: any) {
             console.error("Submission error:", error.message);
-            Swal.fire({
-                icon: 'error',
-                title: 'Submission Failed',
-                text: 'An error occurred. Please try again.',
-            });
+            alert("An error occurred. Please try again.");
         } finally {
-            setLoading(false);
+            setIsSubmitting(false);
         }
     };
 
@@ -487,13 +469,14 @@ fbq('track', 'PageView');
                                         </div>
                                         <button
                                             type="submit"
-                                            disabled={loading}
-                                            className={`mt-4 w-full text-xl px-6 py-3 rounded-lg font-semibold text-white ${loading
-                                                    ? 'bg-gray-400 cursor-not-allowed'
-                                                    : 'bg-gradient-to-r from-orange-400 to-orange-600'
+                                            disabled={isSubmitting}
+                                            className={`mt-4 w-full text-xl px-6 py-3 rounded-lg font-semibold text-white 
+                                    ${isSubmitting
+                                                    ? "bg-gray-400 cursor-not-allowed"
+                                                    : "bg-gradient-to-r from-orange-400 to-orange-600 cursor-pointer"
                                                 }`}
                                         >
-                                            {loading ? 'Submitting...' : 'Submit Now'}
+                                            {isSubmitting ? "Submitting..." : "Submit"}
                                         </button>
                                     </form>
                                 </div>
