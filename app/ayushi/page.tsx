@@ -435,7 +435,7 @@ fbq('track', 'PageView');
                         </div>
                         <section className="w-full px-4 py-12 bg-white flex flex-col items-center text-center">
                             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold max-w-4xl mb-10">
-                                Here's What You'll Learn in This Power-Packed Masterclass:
+                                Here&apos;s What You&apos;ll Learn in This Power-Packed Masterclass:
                             </h2>
 
                             <div className="max-w-3xl w-full text-left space-y-5">
@@ -504,8 +504,8 @@ fbq('track', 'PageView');
 
                             {/* Note */}
                             <p className="mt-10 text-gray-800 font-medium max-w-2xl mx-auto text-sm md:text-base">
-                                Don't Miss This Chance To Elevate Your FOREX Trading Skills. Spaces Are Limited,
-                                And They're Filling Up Fast!
+                                Don&apos;t Miss This Chance To Elevate Your FOREX Trading Skills. Spaces Are Limited,
+                                And They&apos;re Filling Up Fast!
                             </p>
 
                             {/* CTA Button */}
@@ -547,7 +547,7 @@ fbq('track', 'PageView');
                                         <h3 className="font-semibold text-lg mb-2">Meet Ayushi Verma</h3>
                                         <p>
                                             Ayushi Verma is a seasoned financial expert with over 15 years of experience in
-                                            the capital markets. As an NSE Empanelled Trainer, she's helped shape the careers
+                                            the capital markets. As an NSE Empanelled Trainer, she&apos;s helped shape the careers
                                             of over 5000 traders, sharing her wealth of knowledge and practical insights.
                                         </p>
                                     </div>
@@ -559,7 +559,7 @@ fbq('track', 'PageView');
                                             <li>Teaches How To Trade Confidently Without Relying On Indicators</li>
                                             <li>Guides On Managing Substantial Capital In Forex Trading</li>
                                             <li>
-                                                Ayuushi’s Deep Understanding Of Price Action Trading Allows Her To Break Down
+                                                Ayushi&apos;s Deep Understanding Of Price Action Trading Allows Her To Break Down
                                                 Complex Concepts Into Simple, Actionable Steps.
                                             </li>
                                             <li>
