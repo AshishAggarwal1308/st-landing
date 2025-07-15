@@ -268,7 +268,7 @@ function Page() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formErrors, setFormErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const isValidPhone = (phone: string) => /^[0-9]{10}$/.test(phone);
+    const isValidPhone = (phone: string) => /^\d{10}$/.test(phone);
     const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
 
     React.useEffect(() => {
@@ -306,20 +306,20 @@ function Page() {
             phone: UserPhone.trim(),
         };
 
-        let isValid = true;
         const errors: typeof formErrors = {};
+        let isValid = true;
 
         if (!formData.name) {
             errors.name = "Name is required.";
             isValid = false;
         }
 
-        if (!isValidEmail(formData.email)) {
+        if (!formData.email || !isValidEmail(formData.email)) {
             errors.email = "Invalid email address.";
             isValid = false;
         }
 
-        if (!isValidPhone(formData.phone)) {
+        if (!formData.phone || !isValidPhone(formData.phone)) {
             errors.phone = "Invalid phone number.";
             isValid = false;
         }
@@ -332,6 +332,7 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
+
         const redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
 
         const data = {
@@ -340,33 +341,39 @@ function Page() {
             CampeignName: campName,
             WorkShopTime: wDateTime,
             WorkShopDate: wDate,
-            utm_source: urlParams.get("utm_source"),
-            utm_medium: urlParams.get("utm_medium"),
-            utm_campaign: urlParams.get("utm_campaign"),
-            utm_adgroup: urlParams.get("utm_adgroup"),
-            utm_content: urlParams.get("utm_content"),
-            utm_term: urlParams.get("utm_term"),
-            adsetName: urlParams.get("adset name"),
-            adName: urlParams.get("ad name"),
+            utm_source: urlParams.get("utm_source") || "",
+            utm_medium: urlParams.get("utm_medium") || "",
+            utm_campaign: urlParams.get("utm_campaign") || "",
+            utm_adgroup: urlParams.get("utm_adgroup") || "",
+            utm_content: urlParams.get("utm_content") || "",
+            utm_term: urlParams.get("utm_term") || "",
+            adsetName: urlParams.get("adset name") || "",
+            adName: urlParams.get("ad name") || "",
             landingPageUrl: window.location.href,
         };
 
-
         try {
-            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc`, {
+            const response = await fetch("https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0MzI1MjY4NTUzNjUxMzMi_pc", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(data),
             });
-            window.location.href = redirectUrl;
 
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            window.location.href = redirectUrl;
         } catch (error: any) {
-            console.error("Submission error:", error.message);
+            console.error("Submission error:", error?.message || error);
             alert("An error occurred. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
     };
+
 
 
     return (
@@ -470,14 +477,15 @@ fbq('track', 'PageView');
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className={`w-full py-2 rounded-md transition text-xl text-white
-                                    ${isSubmitting
+                                            className={`w-full py-2 rounded-md text-xl text-white transition duration-300 ease-in-out
+                                                ${isSubmitting
                                                     ? "bg-gray-400 cursor-not-allowed"
-                                                    : "bg-gradient-to-r from-orange-400 to-orange-600 cursor-pointer"
+                                                    : "bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 cursor-pointer"
                                                 }`}
                                         >
                                             {isSubmitting ? "Submitting..." : "Submit"}
                                         </button>
+
                                     </form>
                                 </div>
 
