@@ -300,6 +300,16 @@ fbq('track', 'PageView');
                     src="https://www.facebook.com/tr?id=1213866337065764&ev=PageView&noscript=1"
                 />
             </noscript>
+            <Script id="google-ads" strategy="afterInteractive">
+        {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'AW-17081559506');
+
+            `}
+      </Script>
 
             <title>Stock Tutor Bootcamp - Vikram Kashikar</title>
             <meta

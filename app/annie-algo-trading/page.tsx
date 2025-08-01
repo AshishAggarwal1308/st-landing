@@ -391,7 +391,7 @@ function Page() {
 
     return (
         <>
-          <Script id="meta-pixel" strategy="afterInteractive">
+            <Script id="meta-pixel" strategy="afterInteractive">
                 {`
                 !function(f,b,e,v,n,t,s)
                 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -413,7 +413,23 @@ function Page() {
                     style={{ display: 'none' }}
                     src="https://www.facebook.com/tr?id=1690170988281403&ev=PageView&noscript=1"
                 />
-            </noscript>  
+            </noscript>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17081559506"></script>
+            <Script
+                strategy="afterInteractive"
+                src="https://www.googletagmanager.com/gtag/js?id=AW-17081559506"
+            />
+            <Script id="google-ads" strategy="afterInteractive">
+                {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'AW-17081559506');
+
+            `}
+            </Script>
+
             <title>Free Masterclass: Learn No-Code Algo Trading</title>
             <meta
                 name="description"

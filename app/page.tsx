@@ -51,19 +51,19 @@ export default function Home() {
   return (
     <>
       <Script
-                strategy="afterInteractive"
-                src="https://www.googletagmanager.com/gtag/js?id=AW-17066906976"
-            />
-            <Script id="google-ads" strategy="afterInteractive">
-                {`
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=AW-17081559506"
+      />
+      <Script id="google-ads" strategy="afterInteractive">
+        {`
              window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'AW-17066906976');
+  gtag('config', 'AW-17081559506');
 
             `}
-            </Script>
+      </Script>
 
       <div className="min-h-screen bg-white">
         {/* Header */}
@@ -78,7 +78,7 @@ export default function Home() {
               <a href="#benefits" className="text-gray-600 hover:text-blue-600 transition-colors">Benefits</a>
               <a href="#testimonials" className="text-gray-600 hover:text-blue-600 transition-colors">Testimonials</a>
             </nav>
-            
+
           </div>
         </header>
 
@@ -189,7 +189,7 @@ export default function Home() {
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Join thousands of successful traders who started their journey with StockTutor.
             </p>
-            
+
             <p className="mt-6 text-sm text-gray-400">Start learning today with our risk-free 14-day trial</p>
           </div>
         </section>

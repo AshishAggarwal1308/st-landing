@@ -56,6 +56,20 @@ const ConfirmationPage = () => {
                     src="https://www.facebook.com/tr?id=1690170988281403&ev=PageView&noscript=1"
                 />
             </noscript>
+            <Script
+                strategy="afterInteractive"
+                src="https://www.googletagmanager.com/gtag/js?id=AW-17081559506"
+            />
+            <Script id="google-ads" strategy="afterInteractive">
+                {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'AW-17081559506');
+
+            `}
+            </Script>
 
             <title>Stock Tutor - Thankyou</title>
             <meta

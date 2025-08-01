@@ -47,6 +47,16 @@ const ConfirmationPage = () => {
           'tb_tfa_script');
         ` }} />
             </Head>
+            <Script id="google-ads" strategy="afterInteractive">
+        {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'AW-17081559506');
+
+            `}
+      </Script>
 
             <Script id="meta-pixel" strategy="afterInteractive">
                 {`

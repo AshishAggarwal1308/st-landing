@@ -56,6 +56,16 @@ fbq('track', 'PageView');
 
         />
       </noscript>
+      <Script id="google-ads" strategy="afterInteractive">
+        {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'AW-17081559506');
+
+            `}
+      </Script>
       <title>Stock Tutor - Thankyou</title>
       <meta
         name="description"
