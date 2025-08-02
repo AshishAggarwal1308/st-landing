@@ -200,87 +200,85 @@ function Page() {
 
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setFormErrors({});
-
-        const formData = {
-            name: UserName.trim(),
-            email: UserEmail.trim(),
-            phone: UserPhone.trim(),
-        };
-
-        let isValid = true;
-        const errors: typeof formErrors = {};
-
-
-        if (!formData.name) {
-            errors.name = "Name is required.";
-            isValid = false;
-        }
-
-        if (!isValidEmail(formData.email)) {
-            errors.email = "Invalid email address.";
-            isValid = false;
-        }
-
-        if (!isValidPhone(formData.phone)) {
-            errors.phone = "Invalid phone number.";
-            isValid = false;
-        }
-
-        if (!isValid) {
-            setFormErrors(errors);
-            return;
-        }
-
-        setIsSubmitting(true);
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const hostname = window.location.hostname;
-
-        let redirectUrl = "";
-
-        if (hostname.includes("chahataggrawal.in")) {
-            redirectUrl = "https://stocktutor.chahataggrawal.in/vaibhav/thankyou";
-        } else {
-            redirectUrl = "https://stocktutor.co/vaibhav/thankyou";
-        }
-
-        window.location.href = redirectUrl;
-
-        const data = {
-            submittedAt: timestamp(),
-            ...formData,
-            CampeignName: campName,
-            WorkShopTime: wDateTime,
-            utm_source: urlParams.get("utm_source"),
-            utm_medium: urlParams.get("utm_medium"),
-            utm_campaign: urlParams.get("utm_campaign"),
-            utm_adgroup: urlParams.get("utm_adgroup"),
-            utm_content: urlParams.get("utm_content"),
-            utm_term: urlParams.get("utm_term"),
-            adsetName: urlParams.get("adset name"),
-            adName: urlParams.get("ad name"),
-            landingPageUrl: window.location.href,
-        };
-
-
-        try {
-            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzMzA0M2Q1MjZjNTUzZDUxMzAi_pc`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            });
+            e.preventDefault();
+            setFormErrors({});
+    
+            const formData = {
+                name: UserName.trim(),
+                email: UserEmail.trim(),
+                phone: UserPhone.trim(),
+            };
+    
+            let isValid = true;
+            const errors: typeof formErrors = {};
+    
+            if (!formData.name) {
+                errors.name = "Name is required.";
+                isValid = false;
+            }
+    
+            if (!isValidEmail(formData.email)) {
+                errors.email = "Invalid email address.";
+                isValid = false;
+            }
+    
+            if (!isValidPhone(formData.phone)) {
+                errors.phone = "Invalid phone number.";
+                isValid = false;
+            }
+    
+            if (!isValid) {
+                setFormErrors(errors);
+                return;
+            }
+    
+            setIsSubmitting(true);
+    
+            const urlParams = new URLSearchParams(window.location.search);
+            const hostname = window.location.hostname;
+    
+            let redirectUrl = "";
+    
+            if (hostname.includes("chahataggrawal.in")) {
+                redirectUrl = "https://stocktutor.chahataggrawal.in/vaibhav/thankyou";
+            } else {
+                redirectUrl = "https://stocktutor.co/vaibhav/thankyou";
+            }
+    
             window.location.href = redirectUrl;
-
-        } catch (error: any) {
-            console.error("Submission error:", error.message);
-            alert("An error occurred. Please try again.");
-        } finally {
-            setIsSubmitting(false);
-        }
-
-    };
+    
+            const data = {
+                submittedAt: timestamp(),
+                ...formData,
+                CampeignName: campName,
+                WorkShopTime: wDateTime,
+                utm_source: urlParams.get("utm_source"),
+                utm_medium: urlParams.get("utm_medium"),
+                utm_campaign: urlParams.get("utm_campaign"),
+                utm_adgroup: urlParams.get("utm_adgroup"),
+                utm_content: urlParams.get("utm_content"),
+                utm_term: urlParams.get("utm_term"),
+                adsetName: urlParams.get("adset name"),
+                adName: urlParams.get("ad name"),
+                landingPageUrl: window.location.href,
+            };
+    
+    
+            try {
+                const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzMzA0MzM1MjY5NTUzMjUxM2Ii_pc`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                });
+                window.location.href = redirectUrl;
+    
+            } catch (error: any) {
+                console.error("Submission error:", error.message);
+                alert("An error occurred. Please try again.");
+            } finally {
+                setIsSubmitting(false);
+            }
+        };
 
 
     return (
@@ -302,26 +300,28 @@ function Page() {
 
             <Script id="meta-pixel" strategy="afterInteractive">
                 {`
-          !function(f,b,e,v,n,t,s)
-          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '1769144873815738');
-          fbq('track', 'PageView');
-        `}
+                !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '10041111282577074');
+                fbq('track', 'PageView');
+
+                `}
             </Script>
             <noscript>
                 <img
                     height="1"
                     width="1"
                     style={{ display: 'none' }}
-                    src="https://www.facebook.com/tr?id=1769144873815738&ev=PageView&noscript=1"
+                    src="https://www.facebook.com/tr?id=10041111282577074&ev=PageView&noscript=1"
                 />
             </noscript>
+
             <title>Stock Tutor Bootcamp - Vaibhav Batra</title>
             <meta
                 name="description"

@@ -330,7 +330,17 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.co/vibhor-algo-trading/thankyou";
+        const hostname = window.location.hostname;
+
+        let redirectUrl = "";
+
+        if (hostname.includes("chahataggrawal.in")) {
+            redirectUrl = "https://stocktutor.chahataggrawal.in/vibhor-algo-trading/thankyou";
+        } else {
+            redirectUrl = "https://stocktutor.co/vibhor-algo-trading/thankyou";
+        }
+
+        window.location.href = redirectUrl;
 
         const data = {
             submittedAt: timestamp(),

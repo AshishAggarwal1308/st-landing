@@ -330,7 +330,17 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = "https://stocktutor.co/ayushi-forex-trading/thankyou";
+        const hostname = window.location.hostname;
+
+        let redirectUrl = "";
+
+        if (hostname.includes("chahataggrawal.in")) {
+            redirectUrl = "https://stocktutor.chahataggrawal.in/ayushi-forex-trading/thankyou";
+        } else {
+            redirectUrl = "https://stocktutor.co/ayushi-forex-trading/thankyou";
+        }
+
+        window.location.href = redirectUrl;
 
         const data = {
             submittedAt: timestamp(),

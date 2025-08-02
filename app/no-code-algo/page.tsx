@@ -332,8 +332,17 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
+        const hostname = window.location.hostname;
 
-        const redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
+        let redirectUrl = "";
+
+        if (hostname.includes("chahataggrawal.in")) {
+            redirectUrl = "https://stocktutor.chahataggrawal.in/no-code-algo/thankyou";
+        } else {
+            redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
+        }
+
+        window.location.href = redirectUrl;
 
         const data = {
             submittedAt: timestamp(),
