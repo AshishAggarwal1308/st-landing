@@ -305,16 +305,20 @@ function Page() {
                     src="https://www.facebook.com/tr?id=10041111282577074&ev=PageView&noscript=1"
                 />
             </noscript>
+            <Script
+                strategy="afterInteractive"
+                src="https://www.googletagmanager.com/gtag/js?id=AW-17081559506"
+            />
             <Script id="google-ads" strategy="afterInteractive">
-        {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
+                {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-                gtag('config', 'AW-17081559506');
+            gtag('config', 'AW-17081559506');
 
-            `}
-      </Script>
+        `}
+            </Script>
 
             <title>Free Masterclass: Learn No-Code Algo Trading</title>
             <meta

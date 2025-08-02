@@ -290,13 +290,13 @@ fbq('track', 'PageView');
             />
             <Script id="google-ads" strategy="afterInteractive">
                 {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-                gtag('config', 'AW-17081559506');
+            gtag('config', 'AW-17081559506');
 
-            `}
+        `}
             </Script>
             <title>Stock Tutor Bootcamp - Ayushi Verma</title>
             <meta
