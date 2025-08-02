@@ -33,19 +33,17 @@ const ConfirmationPage = () => {
     return (
         <>
             <Head>
-                <script type="text/javascript" dangerouslySetInnerHTML={{
-                    __html: `
-          window._tfa = window._tfa || [];
-          window._tfa.push({notify: 'event', name: 'page_view', id: 1855234});
-          !function (t, f, a, x) {
-            if (!document.getElementById(x)) {
-              t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
-            }
-          }(document.createElement('script'),
-          document.getElementsByTagName('script')[0],
-          '//cdn.taboola.com/libtrc/unip/1855234/tfa.js',
-          'tb_tfa_script');
-        ` }} />
+                <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17081559506"></script>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17081559506');
+            `,
+                    }}
+                />
             </Head>
             <Script
                 strategy="afterInteractive"
@@ -61,6 +59,7 @@ const ConfirmationPage = () => {
 
         `}
             </Script>
+
 
             <Script id="meta-pixel" strategy="afterInteractive">
                 {`
