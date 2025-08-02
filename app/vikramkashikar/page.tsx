@@ -239,17 +239,17 @@ function Page() {
         setIsSubmitting(true);
 
         const urlParams = new URLSearchParams(window.location.search);
-            const hostname = window.location.hostname;
-    
-            let redirectUrl = "";
-    
-            if (hostname.includes("chahataggrawal.in")) {
-                redirectUrl = "https://stocktutor.chahataggrawal.in/vikramkashikar/thankyou";
-            } else {
-                redirectUrl = "https://stocktutor.co/vikramkashikar/thankyou";
-            }
-    
-            window.location.href = redirectUrl;
+        const hostname = window.location.hostname;
+
+        let redirectUrl = "";
+
+        if (hostname.includes("chahataggrawal.in")) {
+            redirectUrl = "https://stocktutor.chahataggrawal.in/vikramkashikar/thankyou";
+        } else {
+            redirectUrl = "https://stocktutor.co/vikramkashikar/thankyou";
+        }
+
+        window.location.href = redirectUrl;
 
         const data = {
             submittedAt: timestamp(),
@@ -381,7 +381,7 @@ fbq('track', 'PageView');
                                     </div>
                                     <p className='text-xl font-bold text-center'>Register Now For<span className='text-blue-500'> FREE MASTERCLASS</span></p>
                                 </div>
-                                <form className="space-y-4 w-full" onSubmit={handleSubmit} >
+                                <form className="space-y-2 w-full" onSubmit={handleSubmit} >
                                     <div>
                                         <label className="block mb-1 text-gray-700">Name</label>
                                         <input
@@ -423,29 +423,18 @@ fbq('track', 'PageView');
                                         </div>
                                         {formErrors.phone && <p className="text-red-500">{formErrors.phone}</p>}
                                     </div>
-
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className={`w-full py-2 rounded-md transition 
-                                    ${isSubmitting
-                                                ? "bg-gray-700 text-white cursor-not-allowed"
-                                                : "bg-black hover:bg-gray-800 text-white cursor-pointer"
+                                        className={`w-full py-2 rounded-md text-xl text-white transition duration-300 ease-in-out
+                                                ${isSubmitting
+                                                ? "bg-gray-400 cursor-not-allowed"
+                                                : "bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 cursor-pointer"
                                             }`}
                                     >
                                         {isSubmitting ? "Submitting..." : "Submit"}
                                     </button>
 
-                                    <p className="text-center text-sm text-gray-500 mt-2">
-                                        By continuing, you agree to our{' '}
-                                        <Link href="https://stocktutor.com/terms-and-conditions" className="text-blue-600 underline">
-                                            Terms of Service
-                                        </Link>{' '}
-                                        and{' '}
-                                        <Link href="https://stocktutor.com/privacy-policy#privacy" className="text-blue-600 underline">
-                                            Privacy Policy
-                                        </Link>.
-                                    </p>
                                 </form>
                             </div>
                         </div>

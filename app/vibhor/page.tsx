@@ -385,71 +385,61 @@ function Page() {
                                     </div>
                                     <p className='text-xl font-bold text-center'>Register Now For<span className='text-blue-500'> FREE MASTERCLASS</span></p>
                                 </div>
-                                <form className="space-y-4 w-full" onSubmit={handleSubmit} >
-                                    <div>
-                                        <label className="block mb-1 text-gray-700">Name</label>
-                                        <input
-                                            name="name"
-                                            placeholder="Enter Name"
-                                            onChange={(e) => setUserName(e.target.value)}
-                                            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-                                            required
-                                        />
-                                    </div>
-                                    {formErrors.name && <p className="text-red-500">{formErrors.name}</p>}
-
-                                    <div>
-                                        <label className="block mb-1 text-gray-700">Email</label>
-                                        <input
-                                            name="email"
-                                            onChange={(e) => setUserEmail(e.target.value)}
-                                            type="email"
-                                            placeholder="Enter Email"
-                                            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-                                            required
-                                        />
-                                    </div>
-                                    {formErrors.email && <p className="text-red-500">{formErrors.email}</p>}
-
-                                    <div>
-                                        <label className="block mb-1 text-gray-700">Phone</label>
-                                        <div className="flex">
-                                            <span className="flex items-center px-4 bg-gray-200 border border-r-0 rounded-l-md text-gray-700">
-                                                IND
-                                            </span>
+                                <form className="space-y-2 w-full" onSubmit={handleSubmit} >
+                                        <div>
+                                            <label className="block mb-1 text-gray-700">Name</label>
                                             <input
-                                                name="phone"
-                                                placeholder="Enter Phone"
-                                                onChange={(e) => setUserPhone(e.target.value)}
-                                                className="w-full px-4 py-2 border border-l-0 rounded-r-md focus:outline-none focus:ring-2 focus:ring-black"
+                                                name="name"
+                                                placeholder="Enter Name"
+                                                onChange={(e) => setUserName(e.target.value)}
+                                                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
                                                 required
                                             />
                                         </div>
-                                        {formErrors.phone && <p className="text-red-500">{formErrors.phone}</p>}
-                                    </div>
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className={`w-full py-2 rounded-md transition 
-                                    ${isSubmitting
-                                                ? "bg-gray-700 text-white cursor-not-allowed"
-                                                : "bg-black hover:bg-gray-800 text-white cursor-pointer"
-                                            }`}
-                                    >
-                                        {isSubmitting ? "Submitting..." : "Submit"}
-                                    </button>
+                                        {formErrors.name && <p className="text-red-500">{formErrors.name}</p>}
 
-                                    <p className="text-center text-sm text-gray-500 mt-2">
-                                        By continuing, you agree to our{' '}
-                                        <Link href="https://stocktutor.com/terms-and-conditions" className="text-blue-600 underline">
-                                            Terms of Service
-                                        </Link>{' '}
-                                        and{' '}
-                                        <Link href="https://stocktutor.com/privacy-policy#privacy" className="text-blue-600 underline">
-                                            Privacy Policy
-                                        </Link>.
-                                    </p>
-                                </form>
+                                        <div>
+                                            <label className="block mb-1 text-gray-700">Email</label>
+                                            <input
+                                                name="email"
+                                                onChange={(e) => setUserEmail(e.target.value)}
+                                                type="email"
+                                                placeholder="Enter Email"
+                                                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+                                                required
+                                            />
+                                        </div>
+                                        {formErrors.email && <p className="text-red-500">{formErrors.email}</p>}
+
+                                        <div>
+                                            <label className="block mb-1 text-gray-700">Phone</label>
+                                            <div className="flex">
+                                                <span className="flex items-center px-4 bg-gray-200 border border-r-0 rounded-l-md text-gray-700">
+                                                    IND
+                                                </span>
+                                                <input
+                                                    name="phone"
+                                                    placeholder="Enter Phone"
+                                                    onChange={(e) => setUserPhone(e.target.value)}
+                                                    className="w-full px-4 py-2 border border-l-0 rounded-r-md focus:outline-none focus:ring-2 focus:ring-black"
+                                                    required
+                                                />
+                                            </div>
+                                            {formErrors.phone && <p className="text-red-500">{formErrors.phone}</p>}
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className={`w-full py-2 rounded-md text-xl text-white transition duration-300 ease-in-out
+                                                ${isSubmitting
+                                                    ? "bg-gray-400 cursor-not-allowed"
+                                                    : "bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 cursor-pointer"
+                                                }`}
+                                        >
+                                            {isSubmitting ? "Submitting..." : "Submit"}
+                                        </button>
+
+                                    </form>
                             </div>
                         </div>
                         <div className="max-w-6xl px-4 py-6 flex flex-col items-center space-y-4">
