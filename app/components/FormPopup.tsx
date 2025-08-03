@@ -97,8 +97,6 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
             redirectUrl = "https://stocktutor.co/no-code-algo/thankyou";
         }
 
-        window.location.href = redirectUrl;
-
         const data = {
             submittedAt: timestamp(),
             ...formData,
@@ -122,6 +120,11 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
             window.location.href = redirectUrl;
 
         } catch (error: any) {

@@ -232,8 +232,6 @@ function Page() {
             redirectUrl = "https://stocktutor.co/ayushi/thankyou";
         }
 
-        window.location.href = redirectUrl;
-
         const data = {
             submittedAt: timestamp(),
             ...formData,
@@ -256,6 +254,11 @@ function Page() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
             window.location.href = redirectUrl;
 
         } catch (error: any) {

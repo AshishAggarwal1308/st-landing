@@ -340,8 +340,6 @@ function Page() {
             redirectUrl = "https://stocktutor.co/annie-algo-trading/thankyou";
         }
 
-        window.location.href = redirectUrl;
-
         const data = {
             submittedAt: timestamp(),
             ...formData,
