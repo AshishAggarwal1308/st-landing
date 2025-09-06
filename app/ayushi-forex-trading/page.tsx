@@ -25,6 +25,13 @@ import {
 import { formatDate_, timestamp } from '@/lib/masterclass_functions/formatDate';
 import Script from 'next/script';
 
+// Declare fbq function for TypeScript
+declare global {
+    interface Window {
+        fbq: (action: string, event: string, data?: any) => void;
+    }
+}
+
 
 const topics = [
     {
@@ -367,6 +374,11 @@ function Page() {
 
             if (!response.ok) {
                 throw new Error("Network response was not ok");
+            }
+
+            // Track successful form submission as Lead
+            if (typeof window !== 'undefined' && window.fbq) {
+                window.fbq('track', 'Lead');
             }
 
             window.location.href = redirectUrl;
