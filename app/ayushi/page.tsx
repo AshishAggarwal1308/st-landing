@@ -266,11 +266,6 @@ function Page() {
                 throw new Error("Network response was not ok");
             }
 
-            // Track successful form submission as Lead
-            if (typeof window !== 'undefined' && window.fbq) {
-                window.fbq('track', 'Lead');
-            }
-
             window.location.href = redirectUrl;
 
         } catch (error: any) {
