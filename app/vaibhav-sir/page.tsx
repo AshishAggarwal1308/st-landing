@@ -216,9 +216,9 @@ function Page() {
         let redirectUrl = "";
 
         if (hostname.includes("chahataggrawal.in")) {
-            redirectUrl = "https://stocktutor.chahataggrawal.in/vibhor/thankyou";
+            redirectUrl = "https://stocktutor.chahataggrawal.in/vaibhav-sir/thankyou";
         } else {
-            redirectUrl = "https://stocktutor.co/vibhor/thankyou";
+            redirectUrl = "https://stocktutor.co/vaibhav-sir/thankyou";
         }
 
         const data = {
@@ -361,14 +361,14 @@ function Page() {
                             {/* Left: Ayushi Info */}
                             <div className="flex flex-col items-center">
                                 <Image
-                                    src="/vibhor.webp"
-                                    alt="Vibhor Jain"
+                                    src="/vaibhavsir.jpeg"
+                                    alt="Vaibhav Sir"
                                     height={300}
                                     width={300}
                                     className="h-[250px] w-[250px] md:h-[300px] md:w-[300px] rounded-full object-contain"
                                 />
                                 <div className="flex flex-col w-full items-center p-4 shadow-2xl rounded-2xl mt-4">
-                                    <span className="text-xl md:text-2xl font-bold text-blue-500">Vibhor Jain</span>
+                                    <span className="text-xl md:text-2xl font-bold text-blue-500">Vaibhav Sir</span>
                                     <span className="text-sm md:text-base text-center font-semibold">NISM Certified professional and algo trading coach</span>
                                     <span className="text-sm">6+ Years of Experience</span>
                                 </div>
@@ -558,8 +558,8 @@ function Page() {
                             <div className="flex flex-col items-center">
                                 <div className="relative w-[280px] h-[360px] md:w-[300px] md:h-[400px]">
                                     <Image
-                                        src="/vibhor.webp" // replace with actual path
-                                        alt="Vibhor Jain"
+                                        src="/vaibhavsir.jpeg" // replace with actual path
+                                        alt="Vaibhav Sir"
                                         fill
                                         className="object-contain"
                                     />
@@ -567,7 +567,7 @@ function Page() {
 
                                 {/* Name Badge */}
                                 <div className="mt-4 bg-white text-center py-3 px-6 rounded-xl shadow-md">
-                                    <p className="text-[#1D4ED8] font-bold text-lg">Vibhor Jain</p>
+                                    <p className="text-[#1D4ED8] font-bold text-lg">Vaibhav Sir</p>
                                     <p className="text-gray-700 text-sm">NISM Certified professional and algo trading coach </p>
                                 </div>
                             </div>
@@ -580,17 +580,17 @@ function Page() {
 
                                 <div className="space-y-6 text-sm md:text-base">
                                     <div>
-                                        <h3 className="font-semibold text-lg mb-2">Meet Vibhor Jain</h3>
+                                        <h3 className="font-semibold text-lg mb-2">Meet Vaibhav Sir</h3>
                                         <p>
-                                            Vibhor Jain, with an MBA in Finance and over 6 years of industry experience, is the founder of Algofy. He has trained more than 2,000 students, empowering them with the skills needed to succeed in the financial markets.
+                                            Vaibhav Sir, with an MBA in Finance and over 6 years of industry experience, is the founder of Algofy. He has trained more than 2,000 students, empowering them with the skills needed to succeed in the financial markets.
 
-                                            What Vibhor Does Best?
+                                            What Vaibhav Sir Does Best?
 
                                             Makes algorithmic trading easy to understand
                                             Teaches how to use profitable trading algorithms
                                             Guides on improving trading strategies with data-driven insights
 
-                                            Vibhor Jain uses his expertise to simplify algorithmic trading, helping people learn how to optimize their own trading strategies. His clear and practical approach ensures that even beginners can get started with confidence.
+                                            Vaibhav Sir uses his expertise to simplify algorithmic trading, helping people learn how to optimize their own trading strategies. His clear and practical approach ensures that even beginners can get started with confidence.
                                         </p>
                                     </div>
                                 </div>

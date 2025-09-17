@@ -335,9 +335,9 @@ function Page() {
         let redirectUrl = "";
 
         if (hostname.includes("chahataggrawal.in")) {
-            redirectUrl = "https://stocktutor.chahataggrawal.in/vibhor-algo-trading/thankyou";
+            redirectUrl = "https://stocktutor.chahataggrawal.in/vaibhav-algo-trading/thankyou";
         } else {
-            redirectUrl = "https://stocktutor.co/vibhor-algo-trading/thankyou";
+            redirectUrl = "https://stocktutor.co/vaibhav-algo-trading/thankyou";
         }
 
         const data = {
@@ -535,7 +535,7 @@ function Page() {
                             <div className="w-full relative">
 
                                 <Image
-                                    src="/vibhor-algo.jpg"
+                                    src="/vaibhavsir.jpeg"
                                     alt="Mastering Intraday Trading"
                                     width={1920}
                                     height={1080}
@@ -608,7 +608,7 @@ function Page() {
                             {/* Tutors Image */}
                             <div className="w-full md:w-1/2">
                                 <img
-                                    src="/vibhor-algo.jpg" // Replace with your actual group photo
+                                    src="/vaibhavsir.jpeg" // Replace with your actual group photo
                                     alt="Our Expert Tutors"
                                     className="w-full h-auto rounded-xl object-cover"
                                 />
@@ -619,7 +619,7 @@ function Page() {
                                 <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Your <span className="text-orange-500">Algo Trading</span> Mentors</h2>
 
                                 <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                                    Vibhor Jain is a highly respected trader and educator known for his sharp analytical skills and deep expertise in price action and volume-based trading. With years of hands-on market experience, he has mentored thousands of aspiring traders, helping them decode market behavior and develop a disciplined trading mindset. Vibhor’s practical teaching style focuses on clarity, consistency, and real-world application—making him a go-to mentor for those looking to master intraday and positional strategies with confidence.
+                                    Vaibhav Sir is a highly respected trader and educator known for his sharp analytical skills and deep expertise in price action and volume-based trading. With years of hands-on market experience, he has mentored thousands of aspiring traders, helping them decode market behavior and develop a disciplined trading mindset. Vaibhav Sir's practical teaching style focuses on clarity, consistency, and real-world application—making him a go-to mentor for those looking to master intraday and positional strategies with confidence.
                                 </p>
                             </div>
                         </div>
