@@ -361,7 +361,7 @@ function Page() {
                             {/* Left: Ayushi Info */}
                             <div className="flex flex-col items-center">
                                 <Image
-                                    src="/vaibhavsir.jpeg"
+                                    src="/vaibhav.webp"
                                     alt="Vaibhav Sir"
                                     height={300}
                                     width={300}
