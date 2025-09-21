@@ -533,7 +533,7 @@ fbq('track', 'PageView');
                             <div className="w-full relative">
 
                                 <Image
-                                    src="/ayushi-forex.jpg"
+                                    src="/ayushi2.jpeg"
                                     alt="Mastering Intraday Trading"
                                     width={1920}
                                     height={1080}
@@ -608,7 +608,7 @@ fbq('track', 'PageView');
                             {/* Tutors Image */}
                             <div className="w-full md:w-1/2">
                                 <img
-                                    src="/ayushi-forex.jpg" // Replace with your actual group photo
+                                    src="/ayushi2.jpeg" // Replace with your actual group photo
                                     alt="Our Expert Tutors"
                                     className="w-full h-auto rounded-xl object-cover"
                                 />
