@@ -365,7 +365,7 @@ function Page() {
 
 
         try {
-            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzMzA0M2Q1MjZjNTUzZDUxMzMi_pc`, {
+            const response = await fetch(`https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTZhMDYzZTA0MzY1MjZlNTUzYzUxM2Ii_pc`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
@@ -401,7 +401,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1834827303964862');
+fbq('init', '1815105216067381');
 fbq('track', 'PageView');
 
         `}
@@ -411,7 +411,7 @@ fbq('track', 'PageView');
                     height="1"
                     width="1"
                     style={{ display: 'none' }}
-                    src="https://www.facebook.com/tr?id=1834827303964862&ev=PageView&noscript=1"
+                    src="https://www.facebook.com/tr?id=1815105216067381&ev=PageView&noscript=1"
 
                 />
             </noscript>
@@ -739,7 +739,7 @@ fbq('track', 'PageView');
                     <div className="fixed bottom-0 left-0 right-0 z-50 bg-white  inset-shadow-sm px-4 py-2 md:py-4">
                         <div className="flex flex-col md:flex-row items-center justify-between gap-1 md:gap-4 max-w-6xl mx-auto">
                             <div className="text-center md:text-left">
-                                <span className="text-lg md:text-2xl font-bold text-black block"><span className="line-through">₹499</span> FREE!!</span>
+                                <span className="text-lg md:text-2xl font-bold text-black block"><span className="line-through">₹999</span> FREE!!</span>
                                 <span className="text-gray-700 block">Offer ends on : {offerEnd}</span>
                             </div>
                             <Link href="#form">
