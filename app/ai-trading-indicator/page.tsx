@@ -276,7 +276,7 @@ function Page() {
     const router = useRouter();
 
     React.useEffect(() => {
-        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=prabhu";
+        const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=pankajs";
 
         fetch(apiUrl)
             .then(response => response.json()).then(data => {

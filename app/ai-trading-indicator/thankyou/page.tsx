@@ -10,7 +10,7 @@ const ConfirmationPage = () => {
   const [offerEnd, setOfferEnd] = useState("");
   const [wAurl, setWAurl] = useState('');
   React.useEffect(() => {
-    const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=prabhu";
+    const apiUrl = "https://script.google.com/macros/s/AKfycby-TiE4gLk4bUC-mSYaT_lDwyOU1T6JTMNw2pIeYQ59qJ2Mk0x9jk_6x47QR5ASCcdasQ/exec?q=pankajs";
 
     fetch(apiUrl)
       .then(response => response.json()).then(data => {
@@ -44,6 +44,12 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1815105216067381');
 fbq('track', 'PageView');
+fbq('track', 'CompleteRegistration', {
+    content_name: 'AI Indicator Trading Strategies Masterclass',
+    content_category: 'Trading Education',
+    value: 0,
+    currency: 'INR'
+});
 
         `}
       </Script>
