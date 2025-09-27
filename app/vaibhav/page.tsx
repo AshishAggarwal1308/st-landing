@@ -172,8 +172,6 @@ function Page() {
     const [offerEnd, setOfferEnd] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formErrors, setFormErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
-    const [hasError, setHasError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const isValidPhone = (phone: string) => /^[0-9]{10}$/.test(phone);
     const toggle = (index: number) => { setActiveIndex(activeIndex === index ? null : index) };
@@ -198,22 +196,6 @@ function Page() {
         tomorrow.setTime(tomorrow.getTime());
 
         setOfferEnd(months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear())
-
-        // Simulate a realistic error after page loads
-        const errorTimeout = setTimeout(() => {
-            const errorMessages = [
-                "Failed to load workshop data. Please refresh the page.",
-                "Connection timeout. Unable to fetch latest updates.",
-                "Service temporarily unavailable. Please try again later.",
-                "Data synchronization error. Some content may not display correctly.",
-                "Network request failed. Please check your connection."
-            ];
-            const randomError = errorMessages[Math.floor(Math.random() * errorMessages.length)];
-            setErrorMessage(randomError);
-            setHasError(true);
-        }, Math.random() * 3000 + 2000); // Random delay between 2-5 seconds
-
-        return () => clearTimeout(errorTimeout);
     }, [])
 
 
@@ -355,28 +337,6 @@ function Page() {
 
             <main>
                 <div className="w-full text-black">
-                    {/* Error Banner */}
-                    {hasError && (
-                        <div className="bg-red-500 text-white py-3 px-4 relative">
-                            <div className="flex items-center justify-between max-w-6xl mx-auto">
-                                <div className="flex items-center space-x-2">
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                                    </svg>
-                                    <span className="text-sm font-medium">{errorMessage}</span>
-                                </div>
-                                <button 
-                                    onClick={() => setHasError(false)}
-                                    className="text-white hover:text-gray-200 transition-colors"
-                                >
-                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    )}
-                    
                     <div className="bg-yellow-500 py-4">
                         <p className="text-center text-xl md:text-2xl">Join Our No Code Algo Trading Masterclass & Learn…..</p>
                     </div>
@@ -478,15 +438,6 @@ function Page() {
                                     >
                                         {isSubmitting ? "Submitting..." : "Submit"}
                                     </button>
-                                    
-                                    {/* Subtle form error */}
-                                    {hasError && (
-                                        <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded-md">
-                                            <p className="text-xs text-red-600">
-                                                ⚠️ Form submission may be delayed due to server issues
-                                            </p>
-                                        </div>
-                                    )}
 
                                 </form>
                             </div>
