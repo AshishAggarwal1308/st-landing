@@ -273,10 +273,7 @@ function Page() {
                 throw new Error("Network response was not ok");
             }
 
-            if(window.fbq) {
-                window.fbq('track', 'Lead');
-            }
-
+   
             window.location.href = redirectUrl;
 
         } catch (error: any) {
