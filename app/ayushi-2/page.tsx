@@ -34,8 +34,8 @@ declare global {
 
 const topics = [
     {
-        bold: 'Master Forex Basics:',
-        description: 'Understand currency pairs, pips, and how the Forex market works',
+        bold: 'Master Currency Trading Basics:',
+        description: 'Understand currency pairs, pips, and how the international currency market works',
     },
     {
         bold: 'Trade with Confidence:',
@@ -128,18 +128,18 @@ const benefits = [
         icon: <PiMonitorPlayBold className="text-blue-500" size={28} />,
         title: 'Imagine Earning Money Anytime, Anywhere:',
         description:
-            'With Forex, The Market Is Open 24 Hours A Day, Allowing You To Trade Whenever It Fits Your Schedule.',
+            'With Currency Trading, The Market Is Open 24 Hours A Day, Allowing You To Trade Whenever It Fits Your Schedule.',
     },
 ];
 
 const faqs = [
     {
-        question: "Can I use these strategies for Forex Trading?",
-        answer: "Yes, these strategies are designed to be applicable to Forex trading as well."
+        question: "Can I use these strategies for Currency Trading?",
+        answer: "Yes, these strategies are designed to be applicable to currency trading as well."
     },
     {
         question: "Who should take this Masterclass?",
-        answer: "Anyone interested in mastering Forex trading, from beginners to intermediate traders."
+        answer: "Anyone interested in mastering currency trading, from beginners to intermediate traders."
     },
     {
         question: "Is it a live masterclass?",
@@ -328,17 +328,11 @@ fbq('track', 'PageView');
             <main>
                 <div className="w-full">
                     <div className="bg-yellow-500 py-4 text-black">
-                        <p className="text-center text-xl md:text-2xl">Join Our Forex Trading Masterclass & Learn…..</p>
+                        <p className="text-center text-xl md:text-2xl">Join Our Currency Trading Masterclass & Learn…..</p>
                     </div>
 
                     <div className="bg-white text-black py-4 md:py-12 px-4 sm:px-6 lg:px-12 flex flex-col items-center space-y-2 md:space-y-10">
                         <p className="text-2xl sm:text-3xl md:text-5xl text-center font-bold leading-7 md:leading-snug max-w-6xl">
-                            Forex trading isn&apos;t luck.{' '}
-                            <span className="text-blue-500">It&apos;s learned.</span> Build your trading mindset with an{' '}
-                            <span className="text-blue-500">expert-led session.</span>
-                        </p>
-
-                        <p className="text-base sm:text-lg text-center font-semibold max-w-xl leading-snug">
                             Master the Selection of Currency Pairs Minimize Risks & Maximize Your Profits
                         </p>
 
@@ -354,7 +348,7 @@ fbq('track', 'PageView');
                                 />
                                 <div className="flex flex-col w-full items-center p-4 shadow-2xl rounded-2xl mt-4">
                                     <span className="text-xl md:text-2xl font-bold text-blue-500">Ayushi Verma</span>
-                                    <span className="text-sm md:text-base font-semibold">Forex trading coach</span>
+                                    <span className="text-sm md:text-base font-semibold">Currency trading coach</span>
                                     <span className="text-sm">15+ Years of Experience</span>
                                 </div>
                             </div>
