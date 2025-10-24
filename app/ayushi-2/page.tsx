@@ -328,7 +328,7 @@ fbq('track', 'PageView');
             <main>
                 <div className="w-full">
                     <div className="bg-yellow-500 py-4 text-black">
-                        <p className="text-center text-xl md:text-2xl">Join Our Currency Trading Masterclass & Learn…..</p>
+                        <p className="text-center text-xl md:text-2xl">Join Our Masterclass : Learn, Earn & Grow</p>
                     </div>
 
                     <div className="bg-white text-black py-4 md:py-12 px-4 sm:px-6 lg:px-12 flex flex-col items-center space-y-2 md:space-y-10">
@@ -348,7 +348,7 @@ fbq('track', 'PageView');
                                 />
                                 <div className="flex flex-col w-full items-center p-4 shadow-2xl rounded-2xl mt-4">
                                     <span className="text-xl md:text-2xl font-bold text-blue-500">Ayushi Verma</span>
-                                    <span className="text-sm md:text-base font-semibold">Currency trading coach</span>
+                                    <span className="text-sm md:text-base font-semibold">Expert Coach</span>
                                     <span className="text-sm">15+ Years of Experience</span>
                                 </div>
                             </div>
